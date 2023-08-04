@@ -9,7 +9,7 @@ namespace FileRemover
 	public class FileDetails
 	{
 		public string FileName { get; set; }
-		public string FileModificationDate { get; set; }
+		public DateTime FileModificationDate { get; set; }
 		public string FilePath { get; set; }
 	}
 }

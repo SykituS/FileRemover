@@ -30,11 +30,6 @@
 		{
 			btnGetFiles = new Button();
 			btnRemoveFiles = new Button();
-			dateTimePickerFrom = new DateTimePicker();
-			dateTimePickerTo = new DateTimePicker();
-			label1 = new Label();
-			label2 = new Label();
-			label3 = new Label();
 			dataGridViewFileList = new DataGridView();
 			folderBrowserDialog1 = new FolderBrowserDialog();
 			tBFolderPath = new TextBox();
@@ -44,7 +39,19 @@
 			labelInfo = new Label();
 			panel2 = new Panel();
 			panel6 = new Panel();
+			label9 = new Label();
 			panel5 = new Panel();
+			label7 = new Label();
+			label8 = new Label();
+			label6 = new Label();
+			label5 = new Label();
+			dateTimePickerTimeTo = new DateTimePicker();
+			dateTimePickerTimeFrom = new DateTimePicker();
+			label1 = new Label();
+			label2 = new Label();
+			label3 = new Label();
+			dateTimePickerDateTo = new DateTimePicker();
+			dateTimePickerDateFrom = new DateTimePicker();
 			panel4 = new Panel();
 			panel3 = new Panel();
 			((System.ComponentModel.ISupportInitialize)dataGridViewFileList).BeginInit();
@@ -58,7 +65,7 @@
 			// 
 			// btnGetFiles
 			// 
-			btnGetFiles.Location = new Point(231, 17);
+			btnGetFiles.Location = new Point(245, 13);
 			btnGetFiles.Name = "btnGetFiles";
 			btnGetFiles.Size = new Size(174, 23);
 			btnGetFiles.TabIndex = 0;
@@ -68,61 +75,13 @@
 			// 
 			// btnRemoveFiles
 			// 
-			btnRemoveFiles.Location = new Point(420, 17);
+			btnRemoveFiles.Location = new Point(434, 13);
 			btnRemoveFiles.Name = "btnRemoveFiles";
 			btnRemoveFiles.Size = new Size(174, 23);
 			btnRemoveFiles.TabIndex = 1;
 			btnRemoveFiles.Text = "Usuń pliki";
 			btnRemoveFiles.UseVisualStyleBackColor = true;
 			btnRemoveFiles.Click += btnRemoveFiles_Click;
-			// 
-			// dateTimePickerFrom
-			// 
-			dateTimePickerFrom.CustomFormat = "dd-MM-yyyy HH:mm:ss";
-			dateTimePickerFrom.Format = DateTimePickerFormat.Custom;
-			dateTimePickerFrom.Location = new Point(388, 46);
-			dateTimePickerFrom.Name = "dateTimePickerFrom";
-			dateTimePickerFrom.Size = new Size(142, 23);
-			dateTimePickerFrom.TabIndex = 2;
-			// 
-			// dateTimePickerTo
-			// 
-			dateTimePickerTo.CustomFormat = "dd-MM-yyyy HH:mm:ss";
-			dateTimePickerTo.Format = DateTimePickerFormat.Custom;
-			dateTimePickerTo.Location = new Point(388, 83);
-			dateTimePickerTo.Name = "dateTimePickerTo";
-			dateTimePickerTo.Size = new Size(142, 23);
-			dateTimePickerTo.TabIndex = 3;
-			// 
-			// label1
-			// 
-			label1.AutoSize = true;
-			label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-			label1.Location = new Point(366, 15);
-			label1.Name = "label1";
-			label1.Size = new Size(89, 21);
-			label1.TabIndex = 4;
-			label1.Text = "Znajdź pliki";
-			// 
-			// label2
-			// 
-			label2.AutoSize = true;
-			label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-			label2.Location = new Point(335, 48);
-			label2.Name = "label2";
-			label2.Size = new Size(28, 21);
-			label2.TabIndex = 5;
-			label2.Text = "od";
-			// 
-			// label3
-			// 
-			label3.AutoSize = true;
-			label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-			label3.Location = new Point(335, 85);
-			label3.Name = "label3";
-			label3.Size = new Size(28, 21);
-			label3.TabIndex = 6;
-			label3.Text = "do";
 			// 
 			// dataGridViewFileList
 			// 
@@ -135,8 +94,9 @@
 			dataGridViewFileList.Name = "dataGridViewFileList";
 			dataGridViewFileList.ReadOnly = true;
 			dataGridViewFileList.RowTemplate.Height = 25;
-			dataGridViewFileList.Size = new Size(843, 263);
+			dataGridViewFileList.Size = new Size(855, 263);
 			dataGridViewFileList.TabIndex = 7;
+			dataGridViewFileList.ColumnHeaderMouseClick += dataGridViewFileList_ColumnHeaderMouseClick;
 			// 
 			// tBFolderPath
 			// 
@@ -199,40 +159,162 @@
 			panel2.Dock = DockStyle.Fill;
 			panel2.Location = new Point(0, 0);
 			panel2.Name = "panel2";
-			panel2.Size = new Size(843, 603);
+			panel2.Size = new Size(855, 706);
 			panel2.TabIndex = 13;
 			// 
 			// panel6
 			// 
+			panel6.Controls.Add(label9);
 			panel6.Controls.Add(label4);
 			panel6.Controls.Add(panel1);
-			panel6.Dock = DockStyle.Bottom;
-			panel6.Location = new Point(0, 3);
+			panel6.Dock = DockStyle.Top;
+			panel6.Location = new Point(0, 0);
 			panel6.Name = "panel6";
-			panel6.Size = new Size(843, 124);
+			panel6.Size = new Size(855, 124);
 			panel6.TabIndex = 16;
+			// 
+			// label9
+			// 
+			label9.AutoSize = true;
+			label9.Location = new Point(0, 0);
+			label9.Name = "label9";
+			label9.Size = new Size(63, 15);
+			label9.TabIndex = 18;
+			label9.Text = "version 0.1";
 			// 
 			// panel5
 			// 
+			panel5.Controls.Add(label7);
+			panel5.Controls.Add(label8);
+			panel5.Controls.Add(label6);
+			panel5.Controls.Add(label5);
+			panel5.Controls.Add(dateTimePickerTimeTo);
+			panel5.Controls.Add(dateTimePickerTimeFrom);
 			panel5.Controls.Add(label1);
 			panel5.Controls.Add(label2);
 			panel5.Controls.Add(label3);
-			panel5.Controls.Add(dateTimePickerTo);
-			panel5.Controls.Add(dateTimePickerFrom);
+			panel5.Controls.Add(dateTimePickerDateTo);
+			panel5.Controls.Add(dateTimePickerDateFrom);
 			panel5.Dock = DockStyle.Bottom;
-			panel5.Location = new Point(0, 127);
+			panel5.Location = new Point(0, 130);
 			panel5.Name = "panel5";
-			panel5.Size = new Size(843, 120);
+			panel5.Size = new Size(855, 220);
 			panel5.TabIndex = 15;
+			// 
+			// label7
+			// 
+			label7.AutoSize = true;
+			label7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+			label7.Location = new Point(502, 93);
+			label7.Name = "label7";
+			label7.Size = new Size(28, 21);
+			label7.TabIndex = 16;
+			label7.Text = "od";
+			// 
+			// label8
+			// 
+			label8.AutoSize = true;
+			label8.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+			label8.Location = new Point(502, 130);
+			label8.Name = "label8";
+			label8.Size = new Size(28, 21);
+			label8.TabIndex = 17;
+			label8.Text = "do";
+			// 
+			// label6
+			// 
+			label6.AutoSize = true;
+			label6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+			label6.Location = new Point(478, 60);
+			label6.Name = "label6";
+			label6.Size = new Size(299, 21);
+			label6.TabIndex = 15;
+			label6.Text = "Wyszukaj pomiędzy podanymi godzinami";
+			// 
+			// label5
+			// 
+			label5.AutoSize = true;
+			label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+			label5.Location = new Point(200, 60);
+			label5.Name = "label5";
+			label5.Size = new Size(182, 21);
+			label5.TabIndex = 14;
+			label5.Text = "Wyszukaj pomiędzy datą";
+			// 
+			// dateTimePickerTimeTo
+			// 
+			dateTimePickerTimeTo.Format = DateTimePickerFormat.Time;
+			dateTimePickerTimeTo.Location = new Point(539, 130);
+			dateTimePickerTimeTo.Name = "dateTimePickerTimeTo";
+			dateTimePickerTimeTo.Size = new Size(83, 23);
+			dateTimePickerTimeTo.TabIndex = 13;
+			// 
+			// dateTimePickerTimeFrom
+			// 
+			dateTimePickerTimeFrom.Format = DateTimePickerFormat.Time;
+			dateTimePickerTimeFrom.Location = new Point(539, 94);
+			dateTimePickerTimeFrom.Name = "dateTimePickerTimeFrom";
+			dateTimePickerTimeFrom.Size = new Size(83, 23);
+			dateTimePickerTimeFrom.TabIndex = 12;
+			// 
+			// label1
+			// 
+			label1.AutoSize = true;
+			label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+			label1.Location = new Point(381, 21);
+			label1.Name = "label1";
+			label1.Size = new Size(89, 21);
+			label1.TabIndex = 9;
+			label1.Text = "Znajdź pliki";
+			// 
+			// label2
+			// 
+			label2.AutoSize = true;
+			label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+			label2.Location = new Point(228, 95);
+			label2.Name = "label2";
+			label2.Size = new Size(28, 21);
+			label2.TabIndex = 10;
+			label2.Text = "od";
+			// 
+			// label3
+			// 
+			label3.AutoSize = true;
+			label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+			label3.Location = new Point(228, 132);
+			label3.Name = "label3";
+			label3.Size = new Size(28, 21);
+			label3.TabIndex = 11;
+			label3.Text = "do";
+			// 
+			// dateTimePickerDateTo
+			// 
+			dateTimePickerDateTo.CustomFormat = "dd-MM-yyyy";
+			dateTimePickerDateTo.Format = DateTimePickerFormat.Custom;
+			dateTimePickerDateTo.Location = new Point(281, 130);
+			dateTimePickerDateTo.Name = "dateTimePickerDateTo";
+			dateTimePickerDateTo.Size = new Size(101, 23);
+			dateTimePickerDateTo.TabIndex = 8;
+			dateTimePickerDateTo.Value = new DateTime(2023, 7, 3, 22, 27, 37, 0);
+			// 
+			// dateTimePickerDateFrom
+			// 
+			dateTimePickerDateFrom.CustomFormat = "dd-MM-yyyy";
+			dateTimePickerDateFrom.Format = DateTimePickerFormat.Custom;
+			dateTimePickerDateFrom.Location = new Point(281, 95);
+			dateTimePickerDateFrom.Name = "dateTimePickerDateFrom";
+			dateTimePickerDateFrom.Size = new Size(101, 23);
+			dateTimePickerDateFrom.TabIndex = 7;
+			dateTimePickerDateFrom.Value = new DateTime(2023, 7, 3, 22, 27, 30, 0);
 			// 
 			// panel4
 			// 
 			panel4.Controls.Add(btnGetFiles);
 			panel4.Controls.Add(btnRemoveFiles);
 			panel4.Dock = DockStyle.Bottom;
-			panel4.Location = new Point(0, 247);
+			panel4.Location = new Point(0, 350);
 			panel4.Name = "panel4";
-			panel4.Size = new Size(843, 49);
+			panel4.Size = new Size(855, 49);
 			panel4.TabIndex = 14;
 			// 
 			// panel3
@@ -240,16 +322,16 @@
 			panel3.Controls.Add(labelInfo);
 			panel3.Controls.Add(dataGridViewFileList);
 			panel3.Dock = DockStyle.Bottom;
-			panel3.Location = new Point(0, 296);
+			panel3.Location = new Point(0, 399);
 			panel3.Name = "panel3";
-			panel3.Size = new Size(843, 307);
+			panel3.Size = new Size(855, 307);
 			panel3.TabIndex = 13;
 			// 
 			// Form1
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
-			ClientSize = new Size(843, 603);
+			ClientSize = new Size(855, 706);
 			Controls.Add(panel2);
 			Name = "Form1";
 			Text = "Form1";
@@ -271,11 +353,6 @@
 
 		private Button btnGetFiles;
 		private Button btnRemoveFiles;
-		private DateTimePicker dateTimePickerFrom;
-		private DateTimePicker dateTimePickerTo;
-		private Label label1;
-		private Label label2;
-		private Label label3;
 		private DataGridView dataGridViewFileList;
 		private FolderBrowserDialog folderBrowserDialog1;
 		private TextBox tBFolderPath;
@@ -288,5 +365,17 @@
 		private Panel panel4;
 		private Panel panel3;
 		private Panel panel6;
+		private Label label7;
+		private Label label8;
+		private Label label6;
+		private Label label5;
+		private DateTimePicker dateTimePickerTimeTo;
+		private DateTimePicker dateTimePickerTimeFrom;
+		private Label label1;
+		private Label label2;
+		private Label label3;
+		private DateTimePicker dateTimePickerDateTo;
+		private DateTimePicker dateTimePickerDateFrom;
+		private Label label9;
 	}
 }
