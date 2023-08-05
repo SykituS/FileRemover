@@ -53,9 +53,72 @@ namespace FileRemover
 
 		}
 
+		private void btnAddDayFrom_Click(object sender, EventArgs e)
+		{
+			dateTimePickerDateFrom.Value = dateTimePickerDateFrom.Value.AddDays(1);
+		}
+
+		private void btnSubtrackDayFrom_Click(object sender, EventArgs e)
+		{
+			dateTimePickerDateFrom.Value = dateTimePickerDateFrom.Value.AddDays(-1);
+		}
+
+		private void btnAddDayTo_Click(object sender, EventArgs e)
+		{
+			dateTimePickerDateTo.Value = dateTimePickerDateTo.Value.AddDays(1);
+		}
+
+		private void btnSubtrackDayTo_Click(object sender, EventArgs e)
+		{
+			dateTimePickerDateTo.Value = dateTimePickerDateTo.Value.AddDays(-1);
+		}
+
+		private void btnAddHourFrom_Click(object sender, EventArgs e)
+		{
+			dateTimePickerTimeFrom.Value = dateTimePickerTimeFrom.Value.AddHours(1);
+		}
+
+		private void btnSubtrackHourFrom_Click(object sender, EventArgs e)
+		{
+			dateTimePickerTimeFrom.Value = dateTimePickerTimeFrom.Value.AddHours(-1);
+		}
+
+		private void btnAddHourTo_Click(object sender, EventArgs e)
+		{
+			dateTimePickerTimeTo.Value = dateTimePickerTimeTo.Value.AddHours(1);
+		}
+
+		private void btnSubtrackHourTo_Click(object sender, EventArgs e)
+		{
+			dateTimePickerTimeTo.Value = dateTimePickerTimeTo.Value.AddHours(-1);
+		}
+
 		#endregion
 
 		#region Functions
+
+		private bool ValidateSelectedTime()
+		{
+			var startDate = dateTimePickerDateFrom.Value;
+			var endDate = dateTimePickerDateTo.Value;
+
+			var startTime = dateTimePickerTimeFrom.Value;
+			var endTime = dateTimePickerTimeTo.Value;
+
+			if (startDate > endDate)
+			{
+				MessageBox.Show("Data startowa nie mo¿e byæ wiêksza ni¿ data koñcowa", "Uwaga!", MessageBoxButtons.OK);
+				return false;
+			}
+
+			if (startTime > endTime)
+			{
+				MessageBox.Show("Data startowa nie mo¿e byæ wiêksza ni¿ data koñcowa", "Uwaga!", MessageBoxButtons.OK);
+				return false;
+			}
+
+			return true;
+		}
 
 		private void GetFilesFromGivenPath()
 		{
@@ -72,6 +135,8 @@ namespace FileRemover
 
 			var startTime = dateTimePickerTimeFrom.Value;
 			var endTime = dateTimePickerTimeTo.Value;
+
+			if (!ValidateSelectedTime()) return;
 
 			try
 			{
@@ -219,5 +284,7 @@ namespace FileRemover
 			//	? SortOrder.Ascending
 			//	: SortOrder.Descending;
 		}
+
+
 	}
 }

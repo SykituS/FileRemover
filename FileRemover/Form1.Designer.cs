@@ -42,8 +42,15 @@
 			panel2 = new Panel();
 			panel6 = new Panel();
 			pictureBox1 = new PictureBox();
-			label9 = new Label();
 			panel5 = new Panel();
+			btnSubtrackHourTo = new Button();
+			btnAddHourTo = new Button();
+			btnSubtrackHourFrom = new Button();
+			btnAddHourFrom = new Button();
+			btnSubtrackDayTo = new Button();
+			btnAddDayTo = new Button();
+			btnSubtrackDayFrom = new Button();
+			btnAddDayFrom = new Button();
 			label7 = new Label();
 			label8 = new Label();
 			label6 = new Label();
@@ -57,6 +64,7 @@
 			dateTimePickerDateFrom = new DateTimePicker();
 			panel4 = new Panel();
 			panel3 = new Panel();
+			label9 = new Label();
 			imageList1 = new ImageList(components);
 			((System.ComponentModel.ISupportInitialize)dataGridViewFileList).BeginInit();
 			panel1.SuspendLayout();
@@ -70,9 +78,9 @@
 			// 
 			// btnGetFiles
 			// 
-			btnGetFiles.Location = new Point(295, 6);
+			btnGetFiles.Location = new Point(295, 9);
 			btnGetFiles.Name = "btnGetFiles";
-			btnGetFiles.Size = new Size(174, 23);
+			btnGetFiles.Size = new Size(174, 27);
 			btnGetFiles.TabIndex = 0;
 			btnGetFiles.Text = "Znajdź pliki do usunięcia";
 			btnGetFiles.UseVisualStyleBackColor = true;
@@ -80,9 +88,9 @@
 			// 
 			// btnRemoveFiles
 			// 
-			btnRemoveFiles.Location = new Point(484, 6);
+			btnRemoveFiles.Location = new Point(484, 9);
 			btnRemoveFiles.Name = "btnRemoveFiles";
-			btnRemoveFiles.Size = new Size(174, 23);
+			btnRemoveFiles.Size = new Size(174, 27);
 			btnRemoveFiles.TabIndex = 1;
 			btnRemoveFiles.Text = "Usuń pliki";
 			btnRemoveFiles.UseVisualStyleBackColor = true;
@@ -126,7 +134,7 @@
 			// 
 			panel1.Controls.Add(tBFolderPath);
 			panel1.Controls.Add(btnSetFilePath);
-			panel1.Location = new Point(293, 144);
+			panel1.Location = new Point(263, 144);
 			panel1.Name = "panel1";
 			panel1.Size = new Size(397, 21);
 			panel1.TabIndex = 10;
@@ -135,7 +143,7 @@
 			// 
 			label4.AutoSize = true;
 			label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-			label4.Location = new Point(409, 108);
+			label4.Location = new Point(379, 108);
 			label4.Name = "label4";
 			label4.Size = new Size(180, 21);
 			label4.TabIndex = 11;
@@ -170,7 +178,6 @@
 			// panel6
 			// 
 			panel6.Controls.Add(pictureBox1);
-			panel6.Controls.Add(label9);
 			panel6.Controls.Add(label4);
 			panel6.Controls.Add(panel1);
 			panel6.Dock = DockStyle.Top;
@@ -181,25 +188,25 @@
 			// 
 			// pictureBox1
 			// 
+			pictureBox1.BackgroundImageLayout = ImageLayout.None;
 			pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-			pictureBox1.Location = new Point(395, 3);
+			pictureBox1.Location = new Point(365, 7);
 			pictureBox1.Name = "pictureBox1";
-			pictureBox1.Size = new Size(199, 79);
+			pictureBox1.Size = new Size(203, 66);
 			pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
 			pictureBox1.TabIndex = 19;
 			pictureBox1.TabStop = false;
 			// 
-			// label9
-			// 
-			label9.AutoSize = true;
-			label9.Location = new Point(0, 0);
-			label9.Name = "label9";
-			label9.Size = new Size(63, 15);
-			label9.TabIndex = 18;
-			label9.Text = "version 0.1";
-			// 
 			// panel5
 			// 
+			panel5.Controls.Add(btnSubtrackHourTo);
+			panel5.Controls.Add(btnAddHourTo);
+			panel5.Controls.Add(btnSubtrackHourFrom);
+			panel5.Controls.Add(btnAddHourFrom);
+			panel5.Controls.Add(btnSubtrackDayTo);
+			panel5.Controls.Add(btnAddDayTo);
+			panel5.Controls.Add(btnSubtrackDayFrom);
+			panel5.Controls.Add(btnAddDayFrom);
 			panel5.Controls.Add(label7);
 			panel5.Controls.Add(label8);
 			panel5.Controls.Add(label6);
@@ -212,16 +219,105 @@
 			panel5.Controls.Add(dateTimePickerDateTo);
 			panel5.Controls.Add(dateTimePickerDateFrom);
 			panel5.Dock = DockStyle.Bottom;
+			panel5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
 			panel5.Location = new Point(0, 193);
 			panel5.Name = "panel5";
 			panel5.Size = new Size(944, 220);
 			panel5.TabIndex = 15;
 			// 
+			// btnSubtrackHourTo
+			// 
+			btnSubtrackHourTo.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+			btnSubtrackHourTo.Location = new Point(653, 126);
+			btnSubtrackHourTo.Name = "btnSubtrackHourTo";
+			btnSubtrackHourTo.Size = new Size(28, 23);
+			btnSubtrackHourTo.TabIndex = 25;
+			btnSubtrackHourTo.Text = "-";
+			btnSubtrackHourTo.UseVisualStyleBackColor = true;
+			btnSubtrackHourTo.Click += btnSubtrackHourTo_Click;
+			// 
+			// btnAddHourTo
+			// 
+			btnAddHourTo.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+			btnAddHourTo.Location = new Point(620, 126);
+			btnAddHourTo.Name = "btnAddHourTo";
+			btnAddHourTo.Size = new Size(28, 23);
+			btnAddHourTo.TabIndex = 24;
+			btnAddHourTo.Text = "+";
+			btnAddHourTo.UseVisualStyleBackColor = true;
+			btnAddHourTo.Click += btnAddHourTo_Click;
+			// 
+			// btnSubtrackHourFrom
+			// 
+			btnSubtrackHourFrom.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+			btnSubtrackHourFrom.Location = new Point(653, 90);
+			btnSubtrackHourFrom.Name = "btnSubtrackHourFrom";
+			btnSubtrackHourFrom.Size = new Size(28, 23);
+			btnSubtrackHourFrom.TabIndex = 23;
+			btnSubtrackHourFrom.Text = "-";
+			btnSubtrackHourFrom.UseVisualStyleBackColor = true;
+			btnSubtrackHourFrom.Click += btnSubtrackHourFrom_Click;
+			// 
+			// btnAddHourFrom
+			// 
+			btnAddHourFrom.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+			btnAddHourFrom.Location = new Point(620, 90);
+			btnAddHourFrom.Name = "btnAddHourFrom";
+			btnAddHourFrom.Size = new Size(28, 23);
+			btnAddHourFrom.TabIndex = 22;
+			btnAddHourFrom.Text = "+";
+			btnAddHourFrom.UseVisualStyleBackColor = true;
+			btnAddHourFrom.Click += btnAddHourFrom_Click;
+			// 
+			// btnSubtrackDayTo
+			// 
+			btnSubtrackDayTo.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+			btnSubtrackDayTo.Location = new Point(365, 127);
+			btnSubtrackDayTo.Name = "btnSubtrackDayTo";
+			btnSubtrackDayTo.Size = new Size(28, 23);
+			btnSubtrackDayTo.TabIndex = 21;
+			btnSubtrackDayTo.Text = "-";
+			btnSubtrackDayTo.UseVisualStyleBackColor = true;
+			btnSubtrackDayTo.Click += btnSubtrackDayTo_Click;
+			// 
+			// btnAddDayTo
+			// 
+			btnAddDayTo.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+			btnAddDayTo.Location = new Point(331, 128);
+			btnAddDayTo.Name = "btnAddDayTo";
+			btnAddDayTo.Size = new Size(28, 23);
+			btnAddDayTo.TabIndex = 20;
+			btnAddDayTo.Text = "+";
+			btnAddDayTo.UseVisualStyleBackColor = true;
+			btnAddDayTo.Click += btnAddDayTo_Click;
+			// 
+			// btnSubtrackDayFrom
+			// 
+			btnSubtrackDayFrom.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+			btnSubtrackDayFrom.Location = new Point(365, 93);
+			btnSubtrackDayFrom.Name = "btnSubtrackDayFrom";
+			btnSubtrackDayFrom.Size = new Size(28, 23);
+			btnSubtrackDayFrom.TabIndex = 19;
+			btnSubtrackDayFrom.Text = "-";
+			btnSubtrackDayFrom.UseVisualStyleBackColor = true;
+			btnSubtrackDayFrom.Click += btnSubtrackDayFrom_Click;
+			// 
+			// btnAddDayFrom
+			// 
+			btnAddDayFrom.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+			btnAddDayFrom.Location = new Point(331, 93);
+			btnAddDayFrom.Name = "btnAddDayFrom";
+			btnAddDayFrom.Size = new Size(28, 23);
+			btnAddDayFrom.TabIndex = 18;
+			btnAddDayFrom.Text = "+";
+			btnAddDayFrom.UseVisualStyleBackColor = true;
+			btnAddDayFrom.Click += btnAddDayFrom_Click;
+			// 
 			// label7
 			// 
 			label7.AutoSize = true;
 			label7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-			label7.Location = new Point(566, 95);
+			label7.Location = new Point(500, 88);
 			label7.Name = "label7";
 			label7.Size = new Size(28, 21);
 			label7.TabIndex = 16;
@@ -231,7 +327,7 @@
 			// 
 			label8.AutoSize = true;
 			label8.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-			label8.Location = new Point(566, 132);
+			label8.Location = new Point(500, 125);
 			label8.Name = "label8";
 			label8.Size = new Size(28, 21);
 			label8.TabIndex = 17;
@@ -241,7 +337,7 @@
 			// 
 			label6.AutoSize = true;
 			label6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-			label6.Location = new Point(496, 62);
+			label6.Location = new Point(499, 62);
 			label6.Name = "label6";
 			label6.Size = new Size(299, 21);
 			label6.TabIndex = 15;
@@ -251,7 +347,7 @@
 			// 
 			label5.AutoSize = true;
 			label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-			label5.Location = new Point(245, 62);
+			label5.Location = new Point(169, 61);
 			label5.Name = "label5";
 			label5.Size = new Size(182, 21);
 			label5.TabIndex = 14;
@@ -260,24 +356,25 @@
 			// dateTimePickerTimeTo
 			// 
 			dateTimePickerTimeTo.Format = DateTimePickerFormat.Time;
-			dateTimePickerTimeTo.Location = new Point(603, 132);
+			dateTimePickerTimeTo.Location = new Point(537, 125);
 			dateTimePickerTimeTo.Name = "dateTimePickerTimeTo";
-			dateTimePickerTimeTo.Size = new Size(83, 23);
+			dateTimePickerTimeTo.Size = new Size(72, 23);
 			dateTimePickerTimeTo.TabIndex = 13;
 			// 
 			// dateTimePickerTimeFrom
 			// 
+			dateTimePickerTimeFrom.CustomFormat = "";
 			dateTimePickerTimeFrom.Format = DateTimePickerFormat.Time;
-			dateTimePickerTimeFrom.Location = new Point(603, 96);
+			dateTimePickerTimeFrom.Location = new Point(537, 89);
 			dateTimePickerTimeFrom.Name = "dateTimePickerTimeFrom";
-			dateTimePickerTimeFrom.Size = new Size(83, 23);
+			dateTimePickerTimeFrom.Size = new Size(72, 23);
 			dateTimePickerTimeFrom.TabIndex = 12;
 			// 
 			// label1
 			// 
 			label1.AutoSize = true;
 			label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-			label1.Location = new Point(445, 23);
+			label1.Location = new Point(421, 18);
 			label1.Name = "label1";
 			label1.Size = new Size(89, 21);
 			label1.TabIndex = 9;
@@ -287,7 +384,7 @@
 			// 
 			label2.AutoSize = true;
 			label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-			label2.Location = new Point(273, 97);
+			label2.Location = new Point(171, 93);
 			label2.Name = "label2";
 			label2.Size = new Size(28, 21);
 			label2.TabIndex = 10;
@@ -297,7 +394,7 @@
 			// 
 			label3.AutoSize = true;
 			label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-			label3.Location = new Point(273, 134);
+			label3.Location = new Point(171, 130);
 			label3.Name = "label3";
 			label3.Size = new Size(28, 21);
 			label3.TabIndex = 11;
@@ -307,9 +404,9 @@
 			// 
 			dateTimePickerDateTo.CustomFormat = "dd-MM-yyyy";
 			dateTimePickerDateTo.Format = DateTimePickerFormat.Custom;
-			dateTimePickerDateTo.Location = new Point(326, 132);
+			dateTimePickerDateTo.Location = new Point(215, 128);
 			dateTimePickerDateTo.Name = "dateTimePickerDateTo";
-			dateTimePickerDateTo.Size = new Size(101, 23);
+			dateTimePickerDateTo.Size = new Size(110, 23);
 			dateTimePickerDateTo.TabIndex = 8;
 			dateTimePickerDateTo.Value = new DateTime(2023, 7, 3, 22, 27, 37, 0);
 			// 
@@ -317,9 +414,9 @@
 			// 
 			dateTimePickerDateFrom.CustomFormat = "dd-MM-yyyy";
 			dateTimePickerDateFrom.Format = DateTimePickerFormat.Custom;
-			dateTimePickerDateFrom.Location = new Point(326, 97);
+			dateTimePickerDateFrom.Location = new Point(215, 93);
 			dateTimePickerDateFrom.Name = "dateTimePickerDateFrom";
-			dateTimePickerDateFrom.Size = new Size(101, 23);
+			dateTimePickerDateFrom.Size = new Size(110, 23);
 			dateTimePickerDateFrom.TabIndex = 7;
 			dateTimePickerDateFrom.Value = new DateTime(2023, 7, 3, 22, 27, 30, 0);
 			// 
@@ -336,12 +433,22 @@
 			// panel3
 			// 
 			panel3.Controls.Add(labelInfo);
+			panel3.Controls.Add(label9);
 			panel3.Controls.Add(dataGridViewFileList);
 			panel3.Dock = DockStyle.Bottom;
 			panel3.Location = new Point(0, 462);
 			panel3.Name = "panel3";
 			panel3.Size = new Size(944, 307);
 			panel3.TabIndex = 13;
+			// 
+			// label9
+			// 
+			label9.AutoSize = true;
+			label9.Location = new Point(881, 29);
+			label9.Name = "label9";
+			label9.Size = new Size(63, 15);
+			label9.TabIndex = 18;
+			label9.Text = "version 0.1";
 			// 
 			// imageList1
 			// 
@@ -355,8 +462,9 @@
 			AutoScaleMode = AutoScaleMode.Font;
 			ClientSize = new Size(944, 769);
 			Controls.Add(panel2);
+			Icon = (Icon)resources.GetObject("$this.Icon");
 			Name = "Form1";
-			Text = "Form1";
+			Text = "AllCam - FileRemover";
 			((System.ComponentModel.ISupportInitialize)dataGridViewFileList).EndInit();
 			panel1.ResumeLayout(false);
 			panel1.PerformLayout();
@@ -402,5 +510,13 @@
 		private Label label9;
 		private PictureBox pictureBox1;
 		private ImageList imageList1;
+		private Button btnSubtrackHourFrom;
+		private Button btnAddHourFrom;
+		private Button btnSubtrackDayTo;
+		private Button btnAddDayTo;
+		private Button btnSubtrackDayFrom;
+		private Button btnAddDayFrom;
+		private Button btnSubtrackHourTo;
+		private Button btnAddHourTo;
 	}
 }
