@@ -9,13 +9,17 @@ namespace FileRemover
 {
 	public partial class Form1 : Form
 	{
-		List<FileDetails> _filesDetailsList = new();
+        private List<FileDetails> _filesDetailsList = new();
 		public Form1()
 		{
 			InitializeComponent();
 			dataGridViewFileList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
 			labelInfo.Visible = false;
-			dateTimePickerTimeFrom.Value = DateTime.Today.AddHours(8);
+
+			dateTimePickerDateFrom.Value = DateTime.Now.AddDays(-1);
+			dateTimePickerDateTo.Value = DateTime.Now;
+
+            dateTimePickerTimeFrom.Value = DateTime.Today.AddHours(8);
 			dateTimePickerTimeTo.Value = DateTime.Today.AddHours(21);
 		}
 
@@ -136,12 +140,16 @@ namespace FileRemover
 			var startTime = dateTimePickerTimeFrom.Value;
 			var endTime = dateTimePickerTimeTo.Value;
 
+            var fileExtensionToSearch = tBFileExtension.Text;
+
 			if (!ValidateSelectedTime()) return;
 
 			try
 			{
 				var directory = Directory.GetDirectories(filePath);
-				var fileList = directory.Length == 0 ? GetFilesInGivenDirectory(filePath, startDate, endDate, startTime, endTime) : GetFilesInSubFolders(directory, startDate, endDate, startTime, endTime);
+				var fileList = directory.Length == 0 ? 
+                    GetFilesInGivenDirectory(filePath, startDate, endDate, startTime, endTime, fileExtensionToSearch) : 
+                    GetFilesInSubFolders(directory, startDate, endDate, startTime, endTime, fileExtensionToSearch);
 
 				if (!fileList.Any())
 				{
@@ -162,7 +170,7 @@ namespace FileRemover
 
 		}
 
-		private List<FileDetails> GetFilesInGivenDirectory(string filePath, DateTime startDate, DateTime endDate, DateTime startTime, DateTime endTime)
+		private List<FileDetails> GetFilesInGivenDirectory(string filePath, DateTime startDate, DateTime endDate, DateTime startTime, DateTime endTime, string fileExtensionToSearch)
 		{
 			var fileList = new List<FileDetails>();
 			var files = Directory.GetFiles(filePath);
@@ -192,29 +200,51 @@ namespace FileRemover
 		}
 
 		private List<FileDetails> GetFilesInSubFolders(string[] directories, DateTime startDate, DateTime endDate,
-			DateTime startTime, DateTime endTime)
+			DateTime startTime, DateTime endTime, string fileExtensionToSearch)
 		{
 			var fileList = new List<FileDetails>();
 
 			foreach (var dir in directories)
 			{
-				var files = Directory.GetFiles(dir);
+                try
+                {
+                    var subDirectories = Directory.GetDirectories(dir);
 
-				foreach (var file in files)
-				{
-					var modificationTime = File.GetLastWriteTime(file);
-					if (startDate.Date > modificationTime.Date || modificationTime.Date > endDate.Date) continue;
-					if (startTime.TimeOfDay > modificationTime.TimeOfDay || modificationTime.TimeOfDay > endTime.TimeOfDay) continue;
+                    if (subDirectories.Any())
+                    {
+                        fileList.AddRange(GetFilesInSubFolders(subDirectories, startDate, endDate, startTime, endTime, fileExtensionToSearch));
+                    }
 
-					var fileDetails = new FileDetails
-					{
-						FilePath = file,
-						FileName = Path.GetFileName(file),
-						FileModificationDate = modificationTime,
-					};
+				    var files = Directory.GetFiles(dir);
+				    foreach (var file in files)
+                    {
+                        if (!string.IsNullOrEmpty(fileExtensionToSearch))
+                        {
+                            var extension = Path.GetExtension(file);
+                            if (!string.Equals(fileExtensionToSearch, extension, StringComparison.CurrentCultureIgnoreCase))
+                            {
+                                continue;
+                            }
+                        }
 
-					fileList.Add(fileDetails);
-				}
+					    var modificationTime = File.GetLastWriteTime(file);
+					    if (startDate.Date > modificationTime.Date || modificationTime.Date > endDate.Date) continue;
+					    if (startTime.TimeOfDay > modificationTime.TimeOfDay || modificationTime.TimeOfDay > endTime.TimeOfDay) continue;
+
+					    var fileDetails = new FileDetails
+					    {
+						    FilePath = file,
+						    FileName = Path.GetFileName(file),
+						    FileModificationDate = modificationTime,
+					    };
+
+					    fileList.Add(fileDetails);
+				    }
+                }
+                catch (Exception e)
+                {
+                    Debug.WriteLine("Error while reading files", e);
+                }
 			}
 
 			return fileList;
