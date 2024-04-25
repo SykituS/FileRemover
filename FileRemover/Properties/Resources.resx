@@ -117,4 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="fileremoval.information.processing" xml:space="preserve">
+	  <value>Usuwanie plików</value>
+  </data>
+  <data name="messagebox.title.warning" xml:space="preserve">
+	  <value>Uwaga!</value>
+  </data>
+  <data name="messagebox.content.startdate.error" xml:space="preserve">
+	  <value>Data startowa nie może być większa niż data końcowa</value>
+  </data>
+  <data name="messagebox.content.starttime.error" xml:space="preserve">
+	  <value>Startowa godzina nie może być większa niż końcowa godzina</value>
+  </data>
+  <data name="messagebox.content.filepath.error" xml:space="preserve">
+	  <value>Ustaw lokalizację folderu</value>
+  </data>
+  <data name="messagebox.content.files.error" xml:space="preserve">
+	  <value>Nie znaleziono plików w podanej lokalizacji</value>
+  </data>
+  <data name="label.info.foundedfiles" xml:space="preserve">
+	  <value>Znaleziono {0} plików do usunięcia</value>
+  </data>
+  <data name="messagebox.content.files.notfound" xml:space="preserve">
+	  <value>Podczas wyszukiwania plików wystąpił nieoczekiwany problem! Upewnij się że podana ścieżka istnieje</value>
+  </data>
 </root>

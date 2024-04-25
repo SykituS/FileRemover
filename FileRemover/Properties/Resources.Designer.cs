@@ -59,5 +59,77 @@ namespace FileRemover.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Usuwanie plików.
+        /// </summary>
+        internal static string fileremoval_information_processing {
+            get {
+                return ResourceManager.GetString("fileremoval.information.processing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Znaleziono {0} plików do usunięcia.
+        /// </summary>
+        internal static string label_info_foundedfiles {
+            get {
+                return ResourceManager.GetString("label.info.foundedfiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ustaw lokalizację folderu.
+        /// </summary>
+        internal static string messagebox_content_filepath_error {
+            get {
+                return ResourceManager.GetString("messagebox.content.filepath.error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nie znaleziono plików w podanej lokalizacji.
+        /// </summary>
+        internal static string messagebox_content_files_error {
+            get {
+                return ResourceManager.GetString("messagebox.content.files.error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Podczas wyszukiwania plików wystąpił nieoczekiwany problem! Upewnij się że podana ścieżka istnieje.
+        /// </summary>
+        internal static string messagebox_content_files_notfound {
+            get {
+                return ResourceManager.GetString("messagebox.content.files.notfound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Data startowa nie może być większa niż data końcowa.
+        /// </summary>
+        internal static string messagebox_content_startdate_error {
+            get {
+                return ResourceManager.GetString("messagebox.content.startdate.error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Startowa godzina nie może być większa niż końcowa godzina.
+        /// </summary>
+        internal static string messagebox_content_starttime_error {
+            get {
+                return ResourceManager.GetString("messagebox.content.starttime.error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Uwaga!.
+        /// </summary>
+        internal static string messagebox_title_warning {
+            get {
+                return ResourceManager.GetString("messagebox.title.warning", resourceCulture);
+            }
+        }
     }
 }
