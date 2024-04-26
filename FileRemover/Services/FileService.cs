@@ -144,7 +144,7 @@ public class FileService
             return false;
         }
 
-        if (directoryDetails.StartDate.TimeOfDay > modificationDate.TimeOfDay ||
+        if (directoryDetails.StartTime.TimeOfDay > modificationDate.TimeOfDay ||
             modificationDate.TimeOfDay > directoryDetails.EndTime.TimeOfDay)
         {
             return false;
