@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using FileRemover.Models;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Csla;
-using FileRemover.Models;
+using System.IO;
 
 namespace FileRemover.Services;
 
 public class FileService
 {
+    private List<FileDetails> _files = new();
+
     public Result RemoveFiles(List<FileDetails> filesDetailsList)
     {
         var result = new Result();
@@ -44,58 +41,73 @@ public class FileService
 
     public (List<FileDetails> files, bool success) SearchForFilesInDirectory(DirectoryDetails directoryDetails)
     {
-        var fileList = new List<FileDetails>();
+        _files.Clear();
 
         try
         {
-            RetrieveFilesFromDirectory(directoryDetails.SelectedPath, directoryDetails, fileList);
-            CheckSubDirectoriesAndRetrieveFiles(directoryDetails.SelectedPath, directoryDetails, fileList);
+            RetrieveFilesFromDirectory(directoryDetails.SelectedPath, directoryDetails);
+            CheckSubDirectoriesAndRetrieveFiles(directoryDetails.SelectedPath, directoryDetails);
         }
         catch (Exception e)
         {
-            return (new List<FileDetails>(), false);
-
+            Debug.WriteLine($"Unexpected error occured: {e}");
         }
 
 
-        return (fileList, true);
+        return (_files, true);
     }
 
-    private void CheckSubDirectoriesAndRetrieveFiles(string path, DirectoryDetails directoryDetails, List<FileDetails> fileList)
+    private void CheckSubDirectoriesAndRetrieveFiles(string path, DirectoryDetails directoryDetails)
     {
         var directories = Directory.GetDirectories(path);
-        foreach (var directory in directories)
+
+        if (!directories.Any())
         {
-            try
+            RetrieveFilesFromDirectory(path, directoryDetails);
+        }
+        else
+        {
+            foreach (var directory in directories)
             {
-                var subDirectories = Directory.GetDirectories(directory);
-                if (subDirectories.Any())
+                try
                 {
-                    foreach (var subDirectory in subDirectories)
+                    var subDirectories = Directory.GetDirectories(directory);
+                    if (subDirectories.Any())
                     {
-                        CheckSubDirectoriesAndRetrieveFiles(subDirectory, directoryDetails, fileList);
+                        foreach (var subDirectory in subDirectories)
+                        {
+                            CheckSubDirectoriesAndRetrieveFiles(subDirectory, directoryDetails);
+                        }
                     }
+
+                    RetrieveFilesFromDirectory(directory, directoryDetails);
                 }
-
-                RetrieveFilesFromDirectory(directory, directoryDetails, fileList);
-            }
-            catch (Exception e)
-            {
-                Debug.WriteLine($"Unable to read {directory} | {e}");
+                catch (Exception e)
+                {
+                    Debug.WriteLine($"Unable to read {directory} | {e}");
+                }
             }
         }
+
     }
 
-    private void RetrieveFilesFromDirectory(string path, DirectoryDetails directoryDetails, List<FileDetails> fileList)
+    private void RetrieveFilesFromDirectory(string path, DirectoryDetails directoryDetails)
     {
-        var files = Directory.GetFiles(path);
-        foreach (var file in files)
+        try
         {
-            CheckFileAndAddToList(directoryDetails, file, fileList);
+            var files = Directory.GetFiles(path);
+            foreach (var file in files)
+            {
+                CheckFileAndAddToList(directoryDetails, file);
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.WriteLine($"Unable to read {path} | {e}");
         }
     }
 
-    private void CheckFileAndAddToList(DirectoryDetails directoryDetails, string file, List<FileDetails> fileList)
+    private void CheckFileAndAddToList(DirectoryDetails directoryDetails, string file)
     {
         if (!string.IsNullOrEmpty(directoryDetails.FileExtensionToSearch))
         {
@@ -120,7 +132,7 @@ public class FileService
             FileModificationDate = modificationTime,
         };
 
-        fileList.Add(fileDetails);
+        _files.Add(fileDetails);
     }
 
 

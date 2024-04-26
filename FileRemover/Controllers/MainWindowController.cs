@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FileRemover.Models;
+﻿using FileRemover.Models;
 using FileRemover.Services;
 
 namespace FileRemover.Controllers;
@@ -11,27 +6,25 @@ namespace FileRemover.Controllers;
 public class MainWindowController
 {
     private readonly FileService _fileService;
-    private readonly UserDataContext _userDataContext;
 
-    public MainWindowController(FileService fileService, UserDataContext userDataContext)
+    public MainWindowController(FileService fileService)
     {
         _fileService = fileService;
-        _userDataContext = userDataContext;
     }
 
-    public Result RemoveFiles()
+    public Result RemoveFiles(List<FileDetails> files)
     {
-        var result = _fileService.RemoveFiles(_userDataContext.FilesDetailsList);
-
-        _userDataContext.FilesDetailsList.Clear();
+        var result = _fileService.RemoveFiles(files);
 
         return result;
     }
 
 
-    public Result GetFilesInGivenDirectory(DirectoryDetails directoryDetails)
+    public (List<FileDetails> files, bool success) GetFilesInGivenDirectory(DirectoryDetails directoryDetails)
     {
-        var result = _fileService.SearchForFilesInDirectory(directoryDetails);
+        var (files, success) = _fileService.SearchForFilesInDirectory(directoryDetails);
+
+        return (files, success);
     }
 
 }

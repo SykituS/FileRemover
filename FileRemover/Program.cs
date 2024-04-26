@@ -1,5 +1,4 @@
 using FileRemover.Controllers;
-using FileRemover.Models;
 using FileRemover.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -34,7 +33,6 @@ internal static class Program
                 services.AddScoped<MainWindowForm>();
                 services.AddScoped<MainWindowController>();
                 services.AddScoped<FileService>();
-                services.AddSingleton<UserDataContext>();
             });
     }
 }

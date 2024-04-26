@@ -81,23 +81,25 @@
             // 
             // btnGetFiles
             // 
+            btnGetFiles.Anchor = AnchorStyles.Top;
             btnGetFiles.Location = new Point(435, 11);
             btnGetFiles.Name = "btnGetFiles";
             btnGetFiles.Size = new Size(174, 27);
             btnGetFiles.TabIndex = 0;
             btnGetFiles.Text = "Znajdź pliki do usunięcia";
             btnGetFiles.UseVisualStyleBackColor = true;
-            btnGetFiles.Click += btnGetFiles_Click;
+            btnGetFiles.Click += BtnGetFiles_Click;
             // 
             // btnRemoveFiles
             // 
+            btnRemoveFiles.Anchor = AnchorStyles.Top;
             btnRemoveFiles.Location = new Point(624, 11);
             btnRemoveFiles.Name = "btnRemoveFiles";
             btnRemoveFiles.Size = new Size(174, 27);
             btnRemoveFiles.TabIndex = 1;
             btnRemoveFiles.Text = "Usuń pliki";
             btnRemoveFiles.UseVisualStyleBackColor = true;
-            btnRemoveFiles.Click += btnRemoveFiles_Click;
+            btnRemoveFiles.Click += BtnRemoveFiles_Click;
             // 
             // dataGridViewFileList
             // 
@@ -130,7 +132,7 @@
             btnSetFilePath.TabIndex = 9;
             btnSetFilePath.Text = "Lokalizacja";
             btnSetFilePath.UseVisualStyleBackColor = true;
-            btnSetFilePath.Click += btnSetFilePath_Click;
+            btnSetFilePath.Click += BtnSetFilePath_Click;
             // 
             // panel1
             // 
@@ -155,8 +157,8 @@
             // 
             // labelInfo
             // 
+            labelInfo.Anchor = AnchorStyles.Top;
             labelInfo.AutoSize = true;
-            labelInfo.Dock = DockStyle.Bottom;
             labelInfo.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             labelInfo.Location = new Point(0, 8);
             labelInfo.Name = "labelInfo";
@@ -184,10 +186,10 @@
             panel6.Controls.Add(pictureBox1);
             panel6.Controls.Add(label4);
             panel6.Controls.Add(panel1);
-            panel6.Dock = DockStyle.Top;
+            panel6.Dock = DockStyle.Fill;
             panel6.Location = new Point(0, 0);
             panel6.Name = "panel6";
-            panel6.Size = new Size(1234, 180);
+            panel6.Size = new Size(1234, 173);
             panel6.TabIndex = 16;
             // 
             // pictureBox1
@@ -235,6 +237,7 @@
             // 
             // tBFileExtension
             // 
+            tBFileExtension.Anchor = AnchorStyles.Top;
             tBFileExtension.Location = new Point(346, 199);
             tBFileExtension.Name = "tBFileExtension";
             tBFileExtension.Size = new Size(300, 23);
@@ -242,6 +245,7 @@
             // 
             // label10
             // 
+            label10.Anchor = AnchorStyles.Top;
             label10.AutoSize = true;
             label10.Location = new Point(346, 179);
             label10.Name = "label10";
@@ -251,6 +255,7 @@
             // 
             // label11
             // 
+            label11.Anchor = AnchorStyles.Top;
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label11.Location = new Point(344, 143);
@@ -261,6 +266,7 @@
             // 
             // btnSubtrackHourTo
             // 
+            btnSubtrackHourTo.Anchor = AnchorStyles.Top;
             btnSubtrackHourTo.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             btnSubtrackHourTo.Location = new Point(825, 103);
             btnSubtrackHourTo.Name = "btnSubtrackHourTo";
@@ -268,10 +274,11 @@
             btnSubtrackHourTo.TabIndex = 25;
             btnSubtrackHourTo.Text = "-";
             btnSubtrackHourTo.UseVisualStyleBackColor = true;
-            btnSubtrackHourTo.Click += btnSubtrackHourTo_Click;
+            btnSubtrackHourTo.Click += BtnSubtractHourTo_Click;
             // 
             // btnAddHourTo
             // 
+            btnAddHourTo.Anchor = AnchorStyles.Top;
             btnAddHourTo.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             btnAddHourTo.Location = new Point(792, 103);
             btnAddHourTo.Name = "btnAddHourTo";
@@ -279,10 +286,11 @@
             btnAddHourTo.TabIndex = 24;
             btnAddHourTo.Text = "+";
             btnAddHourTo.UseVisualStyleBackColor = true;
-            btnAddHourTo.Click += btnAddHourTo_Click;
+            btnAddHourTo.Click += BtnAddHourTo_Click;
             // 
             // btnSubtrackHourFrom
             // 
+            btnSubtrackHourFrom.Anchor = AnchorStyles.Top;
             btnSubtrackHourFrom.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             btnSubtrackHourFrom.Location = new Point(825, 67);
             btnSubtrackHourFrom.Name = "btnSubtrackHourFrom";
@@ -290,10 +298,11 @@
             btnSubtrackHourFrom.TabIndex = 23;
             btnSubtrackHourFrom.Text = "-";
             btnSubtrackHourFrom.UseVisualStyleBackColor = true;
-            btnSubtrackHourFrom.Click += btnSubtrackHourFrom_Click;
+            btnSubtrackHourFrom.Click += BtnSubtractHourFrom_Click;
             // 
             // btnAddHourFrom
             // 
+            btnAddHourFrom.Anchor = AnchorStyles.Top;
             btnAddHourFrom.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             btnAddHourFrom.Location = new Point(792, 67);
             btnAddHourFrom.Name = "btnAddHourFrom";
@@ -301,10 +310,11 @@
             btnAddHourFrom.TabIndex = 22;
             btnAddHourFrom.Text = "+";
             btnAddHourFrom.UseVisualStyleBackColor = true;
-            btnAddHourFrom.Click += btnAddHourFrom_Click;
+            btnAddHourFrom.Click += BtnAddHourFrom_Click;
             // 
             // btnSubtrackDayTo
             // 
+            btnSubtrackDayTo.Anchor = AnchorStyles.Top;
             btnSubtrackDayTo.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             btnSubtrackDayTo.Location = new Point(537, 104);
             btnSubtrackDayTo.Name = "btnSubtrackDayTo";
@@ -312,10 +322,11 @@
             btnSubtrackDayTo.TabIndex = 21;
             btnSubtrackDayTo.Text = "-";
             btnSubtrackDayTo.UseVisualStyleBackColor = true;
-            btnSubtrackDayTo.Click += btnSubtrackDayTo_Click;
+            btnSubtrackDayTo.Click += BtnSubtractDayTo_Click;
             // 
             // btnAddDayTo
             // 
+            btnAddDayTo.Anchor = AnchorStyles.Top;
             btnAddDayTo.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             btnAddDayTo.Location = new Point(503, 105);
             btnAddDayTo.Name = "btnAddDayTo";
@@ -323,10 +334,11 @@
             btnAddDayTo.TabIndex = 20;
             btnAddDayTo.Text = "+";
             btnAddDayTo.UseVisualStyleBackColor = true;
-            btnAddDayTo.Click += btnAddDayTo_Click;
+            btnAddDayTo.Click += BtnAddDayTo_Click;
             // 
             // btnSubtrackDayFrom
             // 
+            btnSubtrackDayFrom.Anchor = AnchorStyles.Top;
             btnSubtrackDayFrom.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             btnSubtrackDayFrom.Location = new Point(537, 70);
             btnSubtrackDayFrom.Name = "btnSubtrackDayFrom";
@@ -334,10 +346,11 @@
             btnSubtrackDayFrom.TabIndex = 19;
             btnSubtrackDayFrom.Text = "-";
             btnSubtrackDayFrom.UseVisualStyleBackColor = true;
-            btnSubtrackDayFrom.Click += btnSubtrackDayFrom_Click;
+            btnSubtrackDayFrom.Click += BtnSubtractDayFrom_Click;
             // 
             // btnAddDayFrom
             // 
+            btnAddDayFrom.Anchor = AnchorStyles.Top;
             btnAddDayFrom.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             btnAddDayFrom.Location = new Point(503, 70);
             btnAddDayFrom.Name = "btnAddDayFrom";
@@ -345,10 +358,11 @@
             btnAddDayFrom.TabIndex = 18;
             btnAddDayFrom.Text = "+";
             btnAddDayFrom.UseVisualStyleBackColor = true;
-            btnAddDayFrom.Click += btnAddDayFrom_Click;
+            btnAddDayFrom.Click += BtnAddDayFrom_Click;
             // 
             // label7
             // 
+            label7.Anchor = AnchorStyles.Top;
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label7.Location = new Point(672, 65);
@@ -359,6 +373,7 @@
             // 
             // label8
             // 
+            label8.Anchor = AnchorStyles.Top;
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label8.Location = new Point(672, 102);
@@ -369,6 +384,7 @@
             // 
             // label6
             // 
+            label6.Anchor = AnchorStyles.Top;
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label6.Location = new Point(671, 39);
@@ -379,6 +395,7 @@
             // 
             // label5
             // 
+            label5.Anchor = AnchorStyles.Top;
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label5.Location = new Point(341, 38);
@@ -389,6 +406,7 @@
             // 
             // dateTimePickerTimeTo
             // 
+            dateTimePickerTimeTo.Anchor = AnchorStyles.Top;
             dateTimePickerTimeTo.Format = DateTimePickerFormat.Time;
             dateTimePickerTimeTo.Location = new Point(709, 102);
             dateTimePickerTimeTo.Name = "dateTimePickerTimeTo";
@@ -397,6 +415,7 @@
             // 
             // dateTimePickerTimeFrom
             // 
+            dateTimePickerTimeFrom.Anchor = AnchorStyles.Top;
             dateTimePickerTimeFrom.CustomFormat = "";
             dateTimePickerTimeFrom.Format = DateTimePickerFormat.Time;
             dateTimePickerTimeFrom.Location = new Point(709, 66);
@@ -406,6 +425,7 @@
             // 
             // label1
             // 
+            label1.Anchor = AnchorStyles.Top;
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label1.Location = new Point(577, 10);
@@ -416,6 +436,7 @@
             // 
             // label2
             // 
+            label2.Anchor = AnchorStyles.Top;
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label2.Location = new Point(343, 70);
@@ -426,6 +447,7 @@
             // 
             // label3
             // 
+            label3.Anchor = AnchorStyles.Top;
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label3.Location = new Point(343, 107);
@@ -436,6 +458,7 @@
             // 
             // dateTimePickerDateTo
             // 
+            dateTimePickerDateTo.Anchor = AnchorStyles.Top;
             dateTimePickerDateTo.CustomFormat = "dd-MM-yyyy";
             dateTimePickerDateTo.Format = DateTimePickerFormat.Custom;
             dateTimePickerDateTo.Location = new Point(387, 105);
@@ -446,6 +469,7 @@
             // 
             // dateTimePickerDateFrom
             // 
+            dateTimePickerDateFrom.Anchor = AnchorStyles.Top;
             dateTimePickerDateFrom.CustomFormat = "dd-MM-yyyy";
             dateTimePickerDateFrom.Format = DateTimePickerFormat.Custom;
             dateTimePickerDateFrom.Location = new Point(387, 70);
@@ -477,6 +501,7 @@
             // 
             // label9
             // 
+            label9.Anchor = AnchorStyles.Top;
             label9.AutoSize = true;
             label9.Location = new Point(1177, 29);
             label9.Name = "label9";
