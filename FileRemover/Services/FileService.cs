@@ -6,7 +6,7 @@ namespace FileRemover.Services;
 
 public class FileService
 {
-    private List<FileDetails> _files = new();
+    private readonly List<FileDetails> _files = new();
 
     public Result RemoveFiles(List<FileDetails> filesDetailsList)
     {
