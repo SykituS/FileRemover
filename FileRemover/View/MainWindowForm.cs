@@ -17,6 +17,7 @@ public partial class MainWindowForm : Form
         _controller = controller;
         InitializeComponent();
         dataGridViewFileList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+        labelVersion.Text = string.Format(Resources.label_version, Application.ProductVersion.Split("+")[0]);
         labelInfo.Visible = false;
 
         dateTimePickerDateFrom.Value = DateTime.Now.AddDays(-1);

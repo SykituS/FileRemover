@@ -141,4 +141,7 @@
   <data name="messagebox.content.files.notfound" xml:space="preserve">
 	  <value>Podczas wyszukiwania plików wystąpił nieoczekiwany problem! Upewnij się że podana ścieżka istnieje</value>
   </data>
+  <data name="label.version" xml:space="preserve">
+	  <value>Application version: {0}</value>
+  </data>
 </root>

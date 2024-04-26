@@ -79,6 +79,15 @@ namespace FileRemover.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Application version: {0}.
+        /// </summary>
+        internal static string label_version {
+            get {
+                return ResourceManager.GetString("label.version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ustaw lokalizację folderu.
         /// </summary>
         internal static string messagebox_content_filepath_error {

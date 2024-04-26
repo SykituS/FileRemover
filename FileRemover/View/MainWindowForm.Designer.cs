@@ -42,6 +42,7 @@
             panel2 = new Panel();
             panel6 = new Panel();
             pictureBox1 = new PictureBox();
+            labelVersion = new Label();
             panel5 = new Panel();
             tBFileExtension = new TextBox();
             label10 = new Label();
@@ -67,7 +68,6 @@
             dateTimePickerDateFrom = new DateTimePicker();
             panel4 = new Panel();
             panel3 = new Panel();
-            label9 = new Label();
             imageList1 = new ImageList(components);
             ((System.ComponentModel.ISupportInitialize)dataGridViewFileList).BeginInit();
             panel1.SuspendLayout();
@@ -184,6 +184,7 @@
             // panel6
             // 
             panel6.Controls.Add(pictureBox1);
+            panel6.Controls.Add(labelVersion);
             panel6.Controls.Add(label4);
             panel6.Controls.Add(panel1);
             panel6.Dock = DockStyle.Fill;
@@ -203,6 +204,16 @@
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 19;
             pictureBox1.TabStop = false;
+            // 
+            // labelVersion
+            // 
+            labelVersion.Anchor = AnchorStyles.Top;
+            labelVersion.AutoSize = true;
+            labelVersion.Location = new Point(0, 0);
+            labelVersion.Name = "labelVersion";
+            labelVersion.Size = new Size(54, 15);
+            labelVersion.TabIndex = 18;
+            labelVersion.Text = "version 1";
             // 
             // panel5
             // 
@@ -258,7 +269,7 @@
             label11.Anchor = AnchorStyles.Top;
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label11.Location = new Point(344, 143);
+            label11.Location = new Point(506, 144);
             label11.Name = "label11";
             label11.Size = new Size(194, 21);
             label11.TabIndex = 26;
@@ -491,23 +502,12 @@
             // panel3
             // 
             panel3.Controls.Add(labelInfo);
-            panel3.Controls.Add(label9);
             panel3.Controls.Add(dataGridViewFileList);
             panel3.Dock = DockStyle.Bottom;
             panel3.Location = new Point(0, 462);
             panel3.Name = "panel3";
             panel3.Size = new Size(1234, 307);
             panel3.TabIndex = 13;
-            // 
-            // label9
-            // 
-            label9.Anchor = AnchorStyles.Top;
-            label9.AutoSize = true;
-            label9.Location = new Point(1177, 29);
-            label9.Name = "label9";
-            label9.Size = new Size(54, 15);
-            label9.TabIndex = 18;
-            label9.Text = "version 1";
             // 
             // imageList1
             // 
@@ -566,7 +566,7 @@
 		private Label label3;
 		private DateTimePicker dateTimePickerDateTo;
 		private DateTimePicker dateTimePickerDateFrom;
-		private Label label9;
+		private Label labelVersion;
 		private PictureBox pictureBox1;
 		private ImageList imageList1;
 		private Button btnSubtrackHourFrom;

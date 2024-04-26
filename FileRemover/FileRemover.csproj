@@ -6,7 +6,12 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>Resources\Logo-Icon-transparent.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\Logo-Icon-transparent.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Csla" Version="7.0.0" />
