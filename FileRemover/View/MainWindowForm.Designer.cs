@@ -157,7 +157,6 @@
             // 
             // labelInfo
             // 
-            labelInfo.Anchor = AnchorStyles.Top;
             labelInfo.AutoSize = true;
             labelInfo.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             labelInfo.Location = new Point(0, 8);
@@ -207,7 +206,6 @@
             // 
             // labelVersion
             // 
-            labelVersion.Anchor = AnchorStyles.Top;
             labelVersion.AutoSize = true;
             labelVersion.Location = new Point(0, 0);
             labelVersion.Name = "labelVersion";
@@ -249,7 +247,7 @@
             // tBFileExtension
             // 
             tBFileExtension.Anchor = AnchorStyles.Top;
-            tBFileExtension.Location = new Point(346, 199);
+            tBFileExtension.Location = new Point(445, 190);
             tBFileExtension.Name = "tBFileExtension";
             tBFileExtension.Size = new Size(300, 23);
             tBFileExtension.TabIndex = 21;
@@ -258,7 +256,7 @@
             // 
             label10.Anchor = AnchorStyles.Top;
             label10.AutoSize = true;
-            label10.Location = new Point(346, 179);
+            label10.Location = new Point(445, 170);
             label10.Name = "label10";
             label10.Size = new Size(300, 15);
             label10.TabIndex = 20;
