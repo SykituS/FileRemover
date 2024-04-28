@@ -3,6 +3,7 @@ using FileRemover.Controllers;
 using FileRemover.Models;
 using FileRemover.Properties;
 using System.ComponentModel;
+using System.Diagnostics;
 
 namespace FileRemover;
 
@@ -31,33 +32,10 @@ public partial class MainWindowForm : Form
 
     private void BtnGetFiles_Click(object sender, EventArgs e)
     {
-        var filePath = tBFolderPath.Text;
-        if (string.IsNullOrWhiteSpace(filePath))
-        {
-            MessageBox.Show(Resources.messagebox_content_filepath_error, Resources.messagebox_title_warning, MessageBoxButtons.OK);
-            return;
-        }
+        labelInfo.Text = "";
+        labelInfo.Visible = true;
 
-        if (!ValidateSelectedTime()) return;
-
-        var directoryDetails = new DirectoryDetails(filePath, dateTimePickerDateFrom.Value,
-            dateTimePickerDateTo.Value, dateTimePickerTimeFrom.Value, dateTimePickerTimeTo.Value,
-            tBFileExtension.Text);
-
-        var (files, success) = _controller.GetFilesInGivenDirectory(directoryDetails);
-
-        if (success)
-        {
-            _filesDetailsList.Clear();
-            _filesDetailsList = files.OrderBy(file => file.FileModificationDate).ToList();
-            labelInfo.Text = string.Format(Resources.label_info_foundedfiles, _filesDetailsList.Count);
-            labelInfo.Visible = true;
-            GenerateDataGridView();
-        }
-        else
-        {
-            MessageBox.Show(Resources.messagebox_content_files_notfound, Resources.messagebox_title_warning, MessageBoxButtons.OK);
-        }
+        this.BackgroundWorkerGetFiles.RunWorkerAsync();
     }
 
     private void BtnSetFilePath_Click(object sender, EventArgs e)
@@ -77,7 +55,7 @@ public partial class MainWindowForm : Form
         labelInfo.Text = Resources.fileremoval_information_processing;
 
         MessageBox.Show(result.Message, Resources.messagebox_title_warning, MessageBoxButtons.OK);
-        
+
         labelInfo.Visible = false;
         dataGridViewFileList.DataSource = null;
 
@@ -226,5 +204,64 @@ public partial class MainWindowForm : Form
                 FilePath = filePath
             };
         }
+    }
+
+    private void BackgroundWorkerGetFiles_DoWork(object sender, DoWorkEventArgs e)
+    {
+        var worker = sender as BackgroundWorker;
+
+        e.Result = RetrieveFilesFromLocation();
+    }
+
+    private void BackgroundWorkerGetFiles_ProgressChanged(object sender, ProgressChangedEventArgs e)
+    {
+        labelInfo.Text = string.Format(Resources.label_info_files_searching, e.UserState);
+    }
+
+    private void BackgroundWorkerGetFiles_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+    {
+        var (files, success) = e.Result as (List<FileDetails> files, bool success)? ?? ([], false);
+
+        if (e.Error is not null)
+        {
+            MessageBox.Show(Resources.messagebox_content_files_unexpectederror, Resources.messagebox_title_warning, MessageBoxButtons.OK);
+            return;
+        }
+
+        if (success)
+        {
+            _filesDetailsList.Clear();
+            _filesDetailsList = files.OrderBy(file => file.FileModificationDate).ToList();
+            labelInfo.Text = string.Format(Resources.label_info_foundedfiles, _filesDetailsList.Count);
+            labelInfo.Visible = true;
+            GenerateDataGridView();
+        }
+        else
+        {
+            MessageBox.Show(Resources.messagebox_content_files_notfound, Resources.messagebox_title_warning, MessageBoxButtons.OK);
+        }
+    }
+
+    private (List<FileDetails> files, bool success) RetrieveFilesFromLocation()
+    {
+        var filePath = tBFolderPath.Text;
+        if (string.IsNullOrWhiteSpace(filePath))
+        {
+            MessageBox.Show(Resources.messagebox_content_filepath_error, Resources.messagebox_title_warning, MessageBoxButtons.OK);
+            return ([], false);
+        }
+
+        if (!ValidateSelectedTime())
+        {
+            return ([], false);
+        }
+
+        var directoryDetails = new DirectoryDetails(filePath, dateTimePickerDateFrom.Value,
+            dateTimePickerDateTo.Value, dateTimePickerTimeFrom.Value, dateTimePickerTimeTo.Value,
+            tBFileExtension.Text);
+
+        return _controller.GetFilesInGivenDirectory(directoryDetails, BackgroundWorkerGetFiles);
+
+        
     }
 }

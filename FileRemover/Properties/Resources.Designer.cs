@@ -70,6 +70,15 @@ namespace FileRemover.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Szukanie plików w podanej lokalizacji: {0}.
+        /// </summary>
+        internal static string label_info_files_searching {
+            get {
+                return ResourceManager.GetString("label.info.files.searching", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Znaleziono {0} plików do usunięcia.
         /// </summary>
         internal static string label_info_foundedfiles {
@@ -111,6 +120,15 @@ namespace FileRemover.Properties {
         internal static string messagebox_content_files_notfound {
             get {
                 return ResourceManager.GetString("messagebox.content.files.notfound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Natpotkany problem w trakcie wydobrywania plików.
+        /// </summary>
+        internal static string messagebox_content_files_unexpectederror {
+            get {
+                return ResourceManager.GetString("messagebox.content.files.unexpectederror", resourceCulture);
             }
         }
         

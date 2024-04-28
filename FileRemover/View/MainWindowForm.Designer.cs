@@ -69,6 +69,7 @@
             panel4 = new Panel();
             panel3 = new Panel();
             imageList1 = new ImageList(components);
+            BackgroundWorkerGetFiles = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)dataGridViewFileList).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -109,7 +110,6 @@
             dataGridViewFileList.Dock = DockStyle.Bottom;
             dataGridViewFileList.Location = new Point(0, 44);
             dataGridViewFileList.Name = "dataGridViewFileList";
-            dataGridViewFileList.RowTemplate.Height = 25;
             dataGridViewFileList.Size = new Size(1234, 263);
             dataGridViewFileList.TabIndex = 7;
             dataGridViewFileList.CellMouseClick += dataGridViewFileList_CellMouseClick;
@@ -148,7 +148,7 @@
             // 
             label4.Anchor = AnchorStyles.Top;
             label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.Font = new Font("Segoe UI", 12F);
             label4.Location = new Point(534, 108);
             label4.Name = "label4";
             label4.Size = new Size(180, 21);
@@ -157,15 +157,15 @@
             // 
             // labelInfo
             // 
-            labelInfo.AutoSize = true;
-            labelInfo.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            labelInfo.Location = new Point(0, 8);
+            labelInfo.Dock = DockStyle.Bottom;
+            labelInfo.Font = new Font("Segoe UI", 12F);
+            labelInfo.Location = new Point(0, 0);
             labelInfo.Name = "labelInfo";
             labelInfo.Padding = new Padding(15, 0, 0, 15);
-            labelInfo.Size = new Size(89, 36);
+            labelInfo.Size = new Size(1234, 44);
             labelInfo.TabIndex = 12;
             labelInfo.Text = "LabelInfo";
-            labelInfo.TextAlign = ContentAlignment.MiddleCenter;
+            labelInfo.TextAlign = ContentAlignment.MiddleLeft;
             labelInfo.Visible = false;
             // 
             // panel2
@@ -238,7 +238,7 @@
             panel5.Controls.Add(dateTimePickerDateTo);
             panel5.Controls.Add(dateTimePickerDateFrom);
             panel5.Dock = DockStyle.Bottom;
-            panel5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            panel5.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             panel5.Location = new Point(0, 173);
             panel5.Name = "panel5";
             panel5.Size = new Size(1234, 240);
@@ -266,7 +266,7 @@
             // 
             label11.Anchor = AnchorStyles.Top;
             label11.AutoSize = true;
-            label11.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label11.Font = new Font("Segoe UI", 12F);
             label11.Location = new Point(506, 144);
             label11.Name = "label11";
             label11.Size = new Size(194, 21);
@@ -276,7 +276,7 @@
             // btnSubtrackHourTo
             // 
             btnSubtrackHourTo.Anchor = AnchorStyles.Top;
-            btnSubtrackHourTo.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSubtrackHourTo.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnSubtrackHourTo.Location = new Point(825, 103);
             btnSubtrackHourTo.Name = "btnSubtrackHourTo";
             btnSubtrackHourTo.Size = new Size(28, 23);
@@ -288,7 +288,7 @@
             // btnAddHourTo
             // 
             btnAddHourTo.Anchor = AnchorStyles.Top;
-            btnAddHourTo.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnAddHourTo.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnAddHourTo.Location = new Point(792, 103);
             btnAddHourTo.Name = "btnAddHourTo";
             btnAddHourTo.Size = new Size(28, 23);
@@ -300,7 +300,7 @@
             // btnSubtrackHourFrom
             // 
             btnSubtrackHourFrom.Anchor = AnchorStyles.Top;
-            btnSubtrackHourFrom.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSubtrackHourFrom.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnSubtrackHourFrom.Location = new Point(825, 67);
             btnSubtrackHourFrom.Name = "btnSubtrackHourFrom";
             btnSubtrackHourFrom.Size = new Size(28, 23);
@@ -312,7 +312,7 @@
             // btnAddHourFrom
             // 
             btnAddHourFrom.Anchor = AnchorStyles.Top;
-            btnAddHourFrom.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnAddHourFrom.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnAddHourFrom.Location = new Point(792, 67);
             btnAddHourFrom.Name = "btnAddHourFrom";
             btnAddHourFrom.Size = new Size(28, 23);
@@ -324,7 +324,7 @@
             // btnSubtrackDayTo
             // 
             btnSubtrackDayTo.Anchor = AnchorStyles.Top;
-            btnSubtrackDayTo.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSubtrackDayTo.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnSubtrackDayTo.Location = new Point(537, 104);
             btnSubtrackDayTo.Name = "btnSubtrackDayTo";
             btnSubtrackDayTo.Size = new Size(28, 23);
@@ -336,7 +336,7 @@
             // btnAddDayTo
             // 
             btnAddDayTo.Anchor = AnchorStyles.Top;
-            btnAddDayTo.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnAddDayTo.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnAddDayTo.Location = new Point(503, 105);
             btnAddDayTo.Name = "btnAddDayTo";
             btnAddDayTo.Size = new Size(28, 23);
@@ -348,7 +348,7 @@
             // btnSubtrackDayFrom
             // 
             btnSubtrackDayFrom.Anchor = AnchorStyles.Top;
-            btnSubtrackDayFrom.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSubtrackDayFrom.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnSubtrackDayFrom.Location = new Point(537, 70);
             btnSubtrackDayFrom.Name = "btnSubtrackDayFrom";
             btnSubtrackDayFrom.Size = new Size(28, 23);
@@ -360,7 +360,7 @@
             // btnAddDayFrom
             // 
             btnAddDayFrom.Anchor = AnchorStyles.Top;
-            btnAddDayFrom.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            btnAddDayFrom.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnAddDayFrom.Location = new Point(503, 70);
             btnAddDayFrom.Name = "btnAddDayFrom";
             btnAddDayFrom.Size = new Size(28, 23);
@@ -373,7 +373,7 @@
             // 
             label7.Anchor = AnchorStyles.Top;
             label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label7.Font = new Font("Segoe UI", 12F);
             label7.Location = new Point(672, 65);
             label7.Name = "label7";
             label7.Size = new Size(28, 21);
@@ -384,7 +384,7 @@
             // 
             label8.Anchor = AnchorStyles.Top;
             label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label8.Font = new Font("Segoe UI", 12F);
             label8.Location = new Point(672, 102);
             label8.Name = "label8";
             label8.Size = new Size(28, 21);
@@ -395,7 +395,7 @@
             // 
             label6.Anchor = AnchorStyles.Top;
             label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label6.Font = new Font("Segoe UI", 12F);
             label6.Location = new Point(671, 39);
             label6.Name = "label6";
             label6.Size = new Size(299, 21);
@@ -406,7 +406,7 @@
             // 
             label5.Anchor = AnchorStyles.Top;
             label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label5.Font = new Font("Segoe UI", 12F);
             label5.Location = new Point(341, 38);
             label5.Name = "label5";
             label5.Size = new Size(182, 21);
@@ -436,7 +436,7 @@
             // 
             label1.Anchor = AnchorStyles.Top;
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Font = new Font("Segoe UI", 12F);
             label1.Location = new Point(577, 10);
             label1.Name = "label1";
             label1.Size = new Size(89, 21);
@@ -447,7 +447,7 @@
             // 
             label2.Anchor = AnchorStyles.Top;
             label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Font = new Font("Segoe UI", 12F);
             label2.Location = new Point(343, 70);
             label2.Name = "label2";
             label2.Size = new Size(28, 21);
@@ -458,7 +458,7 @@
             // 
             label3.Anchor = AnchorStyles.Top;
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Font = new Font("Segoe UI", 12F);
             label3.Location = new Point(343, 107);
             label3.Name = "label3";
             label3.Size = new Size(28, 21);
@@ -513,6 +513,13 @@
             imageList1.ImageSize = new Size(16, 16);
             imageList1.TransparentColor = Color.Transparent;
             // 
+            // BackgroundWorkerGetFiles
+            // 
+            BackgroundWorkerGetFiles.WorkerReportsProgress = true;
+            BackgroundWorkerGetFiles.DoWork += BackgroundWorkerGetFiles_DoWork;
+            BackgroundWorkerGetFiles.ProgressChanged += BackgroundWorkerGetFiles_ProgressChanged;
+            BackgroundWorkerGetFiles.RunWorkerCompleted += BackgroundWorkerGetFiles_RunWorkerCompleted;
+            // 
             // MainWindowForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -533,7 +540,6 @@
             panel5.PerformLayout();
             panel4.ResumeLayout(false);
             panel3.ResumeLayout(false);
-            panel3.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -578,5 +584,6 @@
         private TextBox tBFileExtension;
         private Label label10;
         private Label label11;
+        private System.ComponentModel.BackgroundWorker BackgroundWorkerGetFiles;
     }
 }

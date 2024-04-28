@@ -1,4 +1,5 @@
-﻿using FileRemover.Models;
+﻿using System.ComponentModel;
+using FileRemover.Models;
 using System.Diagnostics;
 using System.IO;
 
@@ -7,6 +8,7 @@ namespace FileRemover.Services;
 public class FileService
 {
     private readonly List<FileDetails> _files = new();
+    private BackgroundWorker? _worker;
 
     public Result RemoveFiles(List<FileDetails> filesDetailsList)
     {
@@ -39,9 +41,10 @@ public class FileService
         return result;
     }
 
-    public (List<FileDetails> files, bool success) SearchForFilesInDirectory(DirectoryDetails directoryDetails)
+    public (List<FileDetails> files, bool success) SearchForFilesInDirectory(DirectoryDetails directoryDetails, BackgroundWorker backgroundWorkerGetFiles)
     {
         _files.Clear();
+        _worker = backgroundWorkerGetFiles;
 
         try
         {
@@ -72,7 +75,7 @@ public class FileService
                 try
                 {
                     var subDirectories = Directory.GetDirectories(directory);
-                    if (subDirectories.Any())
+                    if (subDirectories.Length != 0)
                     {
                         foreach (var subDirectory in subDirectories)
                         {
@@ -109,6 +112,7 @@ public class FileService
 
     private void CheckFileAndAddToList(DirectoryDetails directoryDetails, string file)
     {
+
         if (!string.IsNullOrEmpty(directoryDetails.FileExtensionToSearch))
         {
             var extension = Path.GetExtension(file);
@@ -133,6 +137,7 @@ public class FileService
         };
 
         _files.Add(fileDetails);
+        _worker?.ReportProgress(0, _files.Count);
     }
 
 

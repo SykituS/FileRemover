@@ -1,4 +1,5 @@
-﻿using FileRemover.Models;
+﻿using System.ComponentModel;
+using FileRemover.Models;
 using FileRemover.Services;
 
 namespace FileRemover.Controllers;
@@ -20,9 +21,9 @@ public class MainWindowController
     }
 
 
-    public (List<FileDetails> files, bool success) GetFilesInGivenDirectory(DirectoryDetails directoryDetails)
+    public (List<FileDetails> files, bool success) GetFilesInGivenDirectory(DirectoryDetails directoryDetails, BackgroundWorker backgroundWorkerGetFiles)
     {
-        var (files, success) = _fileService.SearchForFilesInDirectory(directoryDetails);
+        var (files, success) = _fileService.SearchForFilesInDirectory(directoryDetails, backgroundWorkerGetFiles);
 
         return (files, success);
     }

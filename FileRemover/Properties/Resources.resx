@@ -144,4 +144,10 @@
   <data name="label.version" xml:space="preserve">
 	  <value>Application version: {0}</value>
   </data>
+  <data name="messagebox.content.files.unexpectederror" xml:space="preserve">
+	  <value>Natpotkany problem w trakcie wydobrywania plików</value>
+  </data>
+  <data name="label.info.files.searching" xml:space="preserve">
+	  <value>Szukanie plików w podanej lokalizacji: {0}</value>
+  </data>
 </root>
