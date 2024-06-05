@@ -1,5 +1,6 @@
 # FileRemover
 
-Small project that allows you to get files from selected locations and allows easly to remove them from your hard drive
+Small win form wirten in .net 8 application that allows to search for files between given range and easly remove them.
 
-Project on request for company All Cam, that is located in Poland, that's is why UI is made in Polish
+UI Language: Polish
+Technology: Winform .net 8
