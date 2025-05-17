@@ -48,8 +48,7 @@ public class FileService
 
         try
         {
-            RetrieveFilesFromDirectory(directoryDetails.SelectedPath, directoryDetails);
-            CheckSubDirectoriesAndRetrieveFiles(directoryDetails.SelectedPath, directoryDetails);
+            RetrieveFilesFromAllDirectories(directoryDetails.SelectedPath, directoryDetails);
         }
         catch (Exception e)
         {
@@ -92,6 +91,24 @@ public class FileService
             }
         }
 
+    }
+
+    private void RetrieveFilesFromAllDirectories(string rootPath, DirectoryDetails details)
+    {
+        try
+        {
+            var allDirectories = Directory.GetDirectories(rootPath, "*", SearchOption.AllDirectories)
+                .Prepend(rootPath); // include root directory itself
+
+            foreach (var dir in allDirectories)
+            {
+                RetrieveFilesFromDirectory(dir, details);
+            }
+        }
+        catch (Exception e)
+        {
+            Debug.WriteLine($"Error while traversing directories: {e}");
+        }
     }
 
     private void RetrieveFilesFromDirectory(string path, DirectoryDetails directoryDetails)
@@ -141,20 +158,25 @@ public class FileService
     }
 
 
-    private bool ValidateFileModificationTime(DirectoryDetails directoryDetails, DateTime modificationDate)
+    private bool IsWithinDateRange(DateTime date, DateTime start, DateTime end)
+    => start.Date <= date.Date && date.Date <= end.Date;
+
+    private bool IsWithinTimeRange(DateTime time, TimeSpan start, TimeSpan end)
+        => start <= time.TimeOfDay && time.TimeOfDay <= end;
+
+    private bool ValidateFileModificationTime(DirectoryDetails details, DateTime modificationDate)
     {
-        if (directoryDetails.StartDate.Date > modificationDate.Date ||
-            modificationDate.Date > directoryDetails.EndDate.Date)
+        // Check date-specific overrides first
+        foreach (var exception in details.DateExceptions)
         {
-            return false;
+            if (modificationDate.Date == exception.Date.Date)
+            {
+                return IsWithinTimeRange(modificationDate, exception.StartTime, exception.EndTime);
+            }
         }
 
-        if (directoryDetails.StartTime.TimeOfDay > modificationDate.TimeOfDay ||
-            modificationDate.TimeOfDay > directoryDetails.EndTime.TimeOfDay)
-        {
-            return false;
-        }
-        
-        return true;
+        // Fallback to global rule
+        return IsWithinDateRange(modificationDate, details.StartDate, details.EndDate) &&
+               IsWithinTimeRange(modificationDate, details.StartTime.TimeOfDay, details.EndTime.TimeOfDay);
     }
 }

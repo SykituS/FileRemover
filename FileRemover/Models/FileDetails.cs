@@ -9,10 +9,3 @@ public class FileDetails
     public string FilePath { get; set; }
 }
 
-public record DirectoryDetails(
-    string SelectedPath,
-    DateTime StartDate,
-    DateTime EndDate,
-    DateTime StartTime,
-    DateTime EndTime,
-    string? FileExtensionToSearch);

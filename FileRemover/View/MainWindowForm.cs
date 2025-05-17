@@ -260,8 +260,83 @@ public partial class MainWindowForm : Form
             dateTimePickerDateTo.Value, dateTimePickerTimeFrom.Value, dateTimePickerTimeTo.Value,
             tBFileExtension.Text);
 
+        directoryDetails.DateExceptions = new List<SpecificDateTimeRange>();
+
+        foreach (Panel panel in flowLayoutPanelDateExceptions.Controls)
+        {
+            var datePicker = panel.Controls[0] as DateTimePicker;
+            var startPicker = panel.Controls[1] as DateTimePicker;
+            var endPicker = panel.Controls[2] as DateTimePicker;
+
+            if (datePicker != null && startPicker != null && endPicker != null)
+            {
+                directoryDetails.DateExceptions.Add(new SpecificDateTimeRange
+                {
+                    Date = datePicker.Value.Date,
+                    StartTime = startPicker.Value.TimeOfDay,
+                    EndTime = endPicker.Value.TimeOfDay
+                });
+            }
+        }
+
         return _controller.GetFilesInGivenDirectory(directoryDetails, BackgroundWorkerGetFiles);
 
-        
+
+    }
+
+    private void btnAddException_Click(object sender, EventArgs e)
+    {
+        AddExceptionRow();
+    }
+
+    private void AddExceptionRow()
+    {
+        var panel = new Panel
+        {
+            Width = flowLayoutPanelDateExceptions.Width,
+            Height = 30,
+            AutoSize = true
+        };
+
+        var datePicker = new DateTimePicker
+        {
+            Format = DateTimePickerFormat.Short,
+            Width = 100
+        };
+
+        var startTimePicker = new DateTimePicker
+        {
+            Format = DateTimePickerFormat.Time,
+            ShowUpDown = true,
+            Width = 80
+        };
+
+        var endTimePicker = new DateTimePicker
+        {
+            Format = DateTimePickerFormat.Time,
+            ShowUpDown = true,
+            Width = 80
+        };
+
+        var removeButton = new Button
+        {
+            Text = "X",
+            Width = 30,
+            Height = 25
+        };
+
+        removeButton.Click += (s, e) => flowLayoutPanelDateExceptions.Controls.Remove(panel);
+
+        panel.Controls.Add(datePicker);
+        panel.Controls.Add(startTimePicker);
+        panel.Controls.Add(endTimePicker);
+        panel.Controls.Add(removeButton);
+
+        // Optional: layout adjustments
+        startTimePicker.Left = datePicker.Right + 10;
+        endTimePicker.Left = startTimePicker.Right + 10;
+        removeButton.Left = endTimePicker.Right + 10;
+
+        flowLayoutPanelDateExceptions.Controls.Add(panel);
     }
 }
