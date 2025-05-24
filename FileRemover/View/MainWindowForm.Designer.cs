@@ -44,6 +44,8 @@
             pictureBox1 = new PictureBox();
             labelVersion = new Label();
             panel5 = new Panel();
+            label9 = new Label();
+            btnAddException = new Button();
             flowLayoutPanelDateExceptions = new FlowLayoutPanel();
             tBFileExtension = new TextBox();
             label10 = new Label();
@@ -71,7 +73,6 @@
             panel3 = new Panel();
             imageList1 = new ImageList(components);
             BackgroundWorkerGetFiles = new System.ComponentModel.BackgroundWorker();
-            btnAddException = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridViewFileList).BeginInit();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
@@ -141,7 +142,7 @@
             panel1.Anchor = AnchorStyles.Top;
             panel1.Controls.Add(tBFolderPath);
             panel1.Controls.Add(btnSetFilePath);
-            panel1.Location = new Point(464, 144);
+            panel1.Location = new Point(464, 112);
             panel1.Name = "panel1";
             panel1.Size = new Size(397, 21);
             panel1.TabIndex = 10;
@@ -151,7 +152,7 @@
             label4.Anchor = AnchorStyles.Top;
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 12F);
-            label4.Location = new Point(580, 108);
+            label4.Location = new Point(580, 83);
             label4.Name = "label4";
             label4.Size = new Size(180, 21);
             label4.TabIndex = 11;
@@ -191,7 +192,7 @@
             panel6.Dock = DockStyle.Fill;
             panel6.Location = new Point(0, 0);
             panel6.Name = "panel6";
-            panel6.Size = new Size(1327, 184);
+            panel6.Size = new Size(1327, 141);
             panel6.TabIndex = 16;
             // 
             // pictureBox1
@@ -199,7 +200,7 @@
             pictureBox1.Anchor = AnchorStyles.Top;
             pictureBox1.BackgroundImageLayout = ImageLayout.None;
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(566, 35);
+            pictureBox1.Location = new Point(566, 12);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(203, 66);
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -217,6 +218,7 @@
             // 
             // panel5
             // 
+            panel5.Controls.Add(label9);
             panel5.Controls.Add(btnAddException);
             panel5.Controls.Add(flowLayoutPanelDateExceptions);
             panel5.Controls.Add(tBFileExtension);
@@ -243,14 +245,36 @@
             panel5.Controls.Add(dateTimePickerDateFrom);
             panel5.Dock = DockStyle.Bottom;
             panel5.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            panel5.Location = new Point(0, 184);
+            panel5.Location = new Point(0, 141);
             panel5.Name = "panel5";
-            panel5.Size = new Size(1327, 427);
+            panel5.Size = new Size(1327, 470);
             panel5.TabIndex = 15;
+            // 
+            // label9
+            // 
+            label9.Anchor = AnchorStyles.Top;
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 12F);
+            label9.Location = new Point(405, 270);
+            label9.Name = "label9";
+            label9.Size = new Size(413, 21);
+            label9.TabIndex = 29;
+            label9.Text = "Dzień dla wyjątku | od godziny | do godziny | usuń wyjatek";
+            // 
+            // btnAddException
+            // 
+            btnAddException.Location = new Point(565, 220);
+            btnAddException.Name = "btnAddException";
+            btnAddException.Size = new Size(179, 23);
+            btnAddException.TabIndex = 28;
+            btnAddException.Text = "Nowy wyjątek";
+            btnAddException.UseVisualStyleBackColor = true;
+            btnAddException.Click += btnAddException_Click;
             // 
             // flowLayoutPanelDateExceptions
             // 
-            flowLayoutPanelDateExceptions.Location = new Point(401, 262);
+            flowLayoutPanelDateExceptions.AutoScroll = true;
+            flowLayoutPanelDateExceptions.Location = new Point(405, 294);
             flowLayoutPanelDateExceptions.Name = "flowLayoutPanelDateExceptions";
             flowLayoutPanelDateExceptions.Size = new Size(488, 162);
             flowLayoutPanelDateExceptions.TabIndex = 27;
@@ -531,16 +555,6 @@
             BackgroundWorkerGetFiles.ProgressChanged += BackgroundWorkerGetFiles_ProgressChanged;
             BackgroundWorkerGetFiles.RunWorkerCompleted += BackgroundWorkerGetFiles_RunWorkerCompleted;
             // 
-            // btnAddException
-            // 
-            btnAddException.Location = new Point(570, 233);
-            btnAddException.Name = "btnAddException";
-            btnAddException.Size = new Size(179, 23);
-            btnAddException.TabIndex = 28;
-            btnAddException.Text = "Nowy wyjątek";
-            btnAddException.UseVisualStyleBackColor = true;
-            btnAddException.Click += btnAddException_Click;
-            // 
             // MainWindowForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -608,5 +622,6 @@
         private System.ComponentModel.BackgroundWorker BackgroundWorkerGetFiles;
         private FlowLayoutPanel flowLayoutPanelDateExceptions;
         private Button btnAddException;
+        private Label label9;
     }
 }
