@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel;
 using FileRemover.Models;
 using System.Diagnostics;
-using System.IO;
 
 namespace FileRemover.Services;
 
@@ -59,55 +58,39 @@ public class FileService
         return (_files, true);
     }
 
-    private void CheckSubDirectoriesAndRetrieveFiles(string path, DirectoryDetails directoryDetails)
-    {
-        var directories = Directory.GetDirectories(path);
-
-        if (!directories.Any())
-        {
-            RetrieveFilesFromDirectory(path, directoryDetails);
-        }
-        else
-        {
-            foreach (var directory in directories)
-            {
-                try
-                {
-                    var subDirectories = Directory.GetDirectories(directory);
-                    if (subDirectories.Length != 0)
-                    {
-                        foreach (var subDirectory in subDirectories)
-                        {
-                            CheckSubDirectoriesAndRetrieveFiles(subDirectory, directoryDetails);
-                        }
-                    }
-
-                    RetrieveFilesFromDirectory(directory, directoryDetails);
-                }
-                catch (Exception e)
-                {
-                    Debug.WriteLine($"Unable to read {directory} | {e}");
-                }
-            }
-        }
-
-    }
-
     private void RetrieveFilesFromAllDirectories(string rootPath, DirectoryDetails details)
     {
-        try
-        {
-            var allDirectories = Directory.GetDirectories(rootPath, "*", SearchOption.AllDirectories)
-                .Prepend(rootPath); // include root directory itself
+        var directoriesToProcess = new Stack<string>();
+        directoriesToProcess.Push(rootPath);
 
-            foreach (var dir in allDirectories)
-            {
-                RetrieveFilesFromDirectory(dir, details);
-            }
-        }
-        catch (Exception e)
+        while (directoriesToProcess.Count > 0)
         {
-            Debug.WriteLine($"Error while traversing directories: {e}");
+            var currentDir = directoriesToProcess.Pop();
+
+            try
+            {
+                // Process files in current directory
+                RetrieveFilesFromDirectory(currentDir, details);
+
+                // Get subdirectories
+                var subDirs = Directory.GetDirectories(currentDir);
+                foreach (var subDir in subDirs)
+                {
+                    directoriesToProcess.Push(subDir);
+                }
+            }
+            catch (UnauthorizedAccessException e)
+            {
+                Debug.WriteLine($"Access denied to {currentDir}: {e.Message}");
+            }
+            catch (PathTooLongException e)
+            {
+                Debug.WriteLine($"Path too long: {currentDir}: {e.Message}");
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine($"Unexpected error in {currentDir}: {e.Message}");
+            }
         }
     }
 
