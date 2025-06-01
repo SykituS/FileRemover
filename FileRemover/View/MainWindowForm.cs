@@ -26,6 +26,8 @@ public partial class MainWindowForm : Form
 
         dateTimePickerTimeFrom.Value = DateTime.Today.AddHours(8);
         dateTimePickerTimeTo.Value = DateTime.Today.AddHours(21);
+
+        labelVersion.Text = $"v{Application.ProductVersion.Split('+')[0]}";
     }
 
     #region EventHandlers

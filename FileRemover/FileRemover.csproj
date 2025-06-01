@@ -9,6 +9,13 @@
     <ApplicationIcon>Resources\Logo-Icon-transparent.ico</ApplicationIcon>
   </PropertyGroup>
 
+	<PropertyGroup>
+		<Version>1.1.0</Version>
+		<!-- Or whatever you want -->
+		<AssemblyVersion>1.0.0.0</AssemblyVersion>
+		<FileVersion>1.0.0.0</FileVersion>
+	</PropertyGroup>
+	
   <ItemGroup>
     <Content Include="Resources\Logo-Icon-transparent.ico" />
   </ItemGroup>
