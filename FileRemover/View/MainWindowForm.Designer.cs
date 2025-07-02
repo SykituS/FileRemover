@@ -50,14 +50,7 @@
             tBFileExtension = new TextBox();
             label10 = new Label();
             label11 = new Label();
-            btnSubtrackHourTo = new Button();
-            btnAddHourTo = new Button();
-            btnSubtrackHourFrom = new Button();
-            btnAddHourFrom = new Button();
-            btnSubtrackDayTo = new Button();
-            btnAddDayTo = new Button();
-            btnSubtrackDayFrom = new Button();
-            btnAddDayFrom = new Button();
+            progressBarSearch = new ProgressBar();
             label7 = new Label();
             label8 = new Label();
             label6 = new Label();
@@ -170,7 +163,17 @@
             labelInfo.Text = "LabelInfo";
             labelInfo.TextAlign = ContentAlignment.MiddleLeft;
             labelInfo.Visible = false;
-            // 
+            //
+            // progressBarSearch
+            //
+            progressBarSearch.Dock = DockStyle.Bottom;
+            progressBarSearch.Location = new Point(0, 0);
+            progressBarSearch.Name = "progressBarSearch";
+            progressBarSearch.Size = new Size(1327, 23);
+            progressBarSearch.Style = ProgressBarStyle.Marquee;
+            progressBarSearch.TabIndex = 32;
+            progressBarSearch.Visible = false;
+            //
             // panel2
             // 
             panel2.Controls.Add(panel6);
@@ -224,14 +227,6 @@
             panel5.Controls.Add(tBFileExtension);
             panel5.Controls.Add(label10);
             panel5.Controls.Add(label11);
-            panel5.Controls.Add(btnSubtrackHourTo);
-            panel5.Controls.Add(btnAddHourTo);
-            panel5.Controls.Add(btnSubtrackHourFrom);
-            panel5.Controls.Add(btnAddHourFrom);
-            panel5.Controls.Add(btnSubtrackDayTo);
-            panel5.Controls.Add(btnAddDayTo);
-            panel5.Controls.Add(btnSubtrackDayFrom);
-            panel5.Controls.Add(btnAddDayFrom);
             panel5.Controls.Add(label7);
             panel5.Controls.Add(label8);
             panel5.Controls.Add(label6);
@@ -308,101 +303,6 @@
             label11.TabIndex = 26;
             label11.Text = "Dodatkowe opcje szukania";
             // 
-            // btnSubtrackHourTo
-            // 
-            btnSubtrackHourTo.Anchor = AnchorStyles.Top;
-            btnSubtrackHourTo.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnSubtrackHourTo.Location = new Point(871, 103);
-            btnSubtrackHourTo.Name = "btnSubtrackHourTo";
-            btnSubtrackHourTo.Size = new Size(28, 23);
-            btnSubtrackHourTo.TabIndex = 25;
-            btnSubtrackHourTo.Text = "-";
-            btnSubtrackHourTo.UseVisualStyleBackColor = true;
-            btnSubtrackHourTo.Click += BtnSubtractHourTo_Click;
-            // 
-            // btnAddHourTo
-            // 
-            btnAddHourTo.Anchor = AnchorStyles.Top;
-            btnAddHourTo.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnAddHourTo.Location = new Point(838, 103);
-            btnAddHourTo.Name = "btnAddHourTo";
-            btnAddHourTo.Size = new Size(28, 23);
-            btnAddHourTo.TabIndex = 24;
-            btnAddHourTo.Text = "+";
-            btnAddHourTo.UseVisualStyleBackColor = true;
-            btnAddHourTo.Click += BtnAddHourTo_Click;
-            // 
-            // btnSubtrackHourFrom
-            // 
-            btnSubtrackHourFrom.Anchor = AnchorStyles.Top;
-            btnSubtrackHourFrom.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnSubtrackHourFrom.Location = new Point(871, 67);
-            btnSubtrackHourFrom.Name = "btnSubtrackHourFrom";
-            btnSubtrackHourFrom.Size = new Size(28, 23);
-            btnSubtrackHourFrom.TabIndex = 23;
-            btnSubtrackHourFrom.Text = "-";
-            btnSubtrackHourFrom.UseVisualStyleBackColor = true;
-            btnSubtrackHourFrom.Click += BtnSubtractHourFrom_Click;
-            // 
-            // btnAddHourFrom
-            // 
-            btnAddHourFrom.Anchor = AnchorStyles.Top;
-            btnAddHourFrom.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnAddHourFrom.Location = new Point(838, 67);
-            btnAddHourFrom.Name = "btnAddHourFrom";
-            btnAddHourFrom.Size = new Size(28, 23);
-            btnAddHourFrom.TabIndex = 22;
-            btnAddHourFrom.Text = "+";
-            btnAddHourFrom.UseVisualStyleBackColor = true;
-            btnAddHourFrom.Click += BtnAddHourFrom_Click;
-            // 
-            // btnSubtrackDayTo
-            // 
-            btnSubtrackDayTo.Anchor = AnchorStyles.Top;
-            btnSubtrackDayTo.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnSubtrackDayTo.Location = new Point(583, 104);
-            btnSubtrackDayTo.Name = "btnSubtrackDayTo";
-            btnSubtrackDayTo.Size = new Size(28, 23);
-            btnSubtrackDayTo.TabIndex = 21;
-            btnSubtrackDayTo.Text = "-";
-            btnSubtrackDayTo.UseVisualStyleBackColor = true;
-            btnSubtrackDayTo.Click += BtnSubtractDayTo_Click;
-            // 
-            // btnAddDayTo
-            // 
-            btnAddDayTo.Anchor = AnchorStyles.Top;
-            btnAddDayTo.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnAddDayTo.Location = new Point(549, 105);
-            btnAddDayTo.Name = "btnAddDayTo";
-            btnAddDayTo.Size = new Size(28, 23);
-            btnAddDayTo.TabIndex = 20;
-            btnAddDayTo.Text = "+";
-            btnAddDayTo.UseVisualStyleBackColor = true;
-            btnAddDayTo.Click += BtnAddDayTo_Click;
-            // 
-            // btnSubtrackDayFrom
-            // 
-            btnSubtrackDayFrom.Anchor = AnchorStyles.Top;
-            btnSubtrackDayFrom.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnSubtrackDayFrom.Location = new Point(583, 70);
-            btnSubtrackDayFrom.Name = "btnSubtrackDayFrom";
-            btnSubtrackDayFrom.Size = new Size(28, 23);
-            btnSubtrackDayFrom.TabIndex = 19;
-            btnSubtrackDayFrom.Text = "-";
-            btnSubtrackDayFrom.UseVisualStyleBackColor = true;
-            btnSubtrackDayFrom.Click += BtnSubtractDayFrom_Click;
-            // 
-            // btnAddDayFrom
-            // 
-            btnAddDayFrom.Anchor = AnchorStyles.Top;
-            btnAddDayFrom.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnAddDayFrom.Location = new Point(549, 70);
-            btnAddDayFrom.Name = "btnAddDayFrom";
-            btnAddDayFrom.Size = new Size(28, 23);
-            btnAddDayFrom.TabIndex = 18;
-            btnAddDayFrom.Text = "+";
-            btnAddDayFrom.UseVisualStyleBackColor = true;
-            btnAddDayFrom.Click += BtnAddDayFrom_Click;
             // 
             // label7
             // 
@@ -534,6 +434,7 @@
             // 
             // panel3
             // 
+            panel3.Controls.Add(progressBarSearch);
             panel3.Controls.Add(labelInfo);
             panel3.Controls.Add(dataGridViewFileList);
             panel3.Dock = DockStyle.Bottom;
@@ -608,14 +509,7 @@
 		private Label labelVersion;
 		private PictureBox pictureBox1;
 		private ImageList imageList1;
-		private Button btnSubtrackHourFrom;
-		private Button btnAddHourFrom;
-		private Button btnSubtrackDayTo;
-		private Button btnAddDayTo;
-		private Button btnSubtrackDayFrom;
-		private Button btnAddDayFrom;
-		private Button btnSubtrackHourTo;
-		private Button btnAddHourTo;
+                private ProgressBar progressBarSearch;
         private TextBox tBFileExtension;
         private Label label10;
         private Label label11;

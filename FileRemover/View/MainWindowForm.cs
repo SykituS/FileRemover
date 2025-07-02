@@ -20,6 +20,9 @@ public partial class MainWindowForm : Form
         dataGridViewFileList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
         labelVersion.Text = string.Format(Resources.label_version, "1.0.1");
         labelInfo.Visible = false;
+        progressBarSearch.Visible = false;
+        btnRemoveFiles.Enabled = false;
+        tBFolderPath.PlaceholderText = "Wybierz folder...";
 
         dateTimePickerDateFrom.Value = DateTime.Now.AddDays(-1);
         dateTimePickerDateTo.Value = DateTime.Now;
@@ -36,17 +39,18 @@ public partial class MainWindowForm : Form
     {
         labelInfo.Text = "";
         labelInfo.Visible = true;
+        progressBarSearch.Visible = true;
+        btnRemoveFiles.Enabled = false;
 
         this.BackgroundWorkerGetFiles.RunWorkerAsync();
     }
 
     private void BtnSetFilePath_Click(object sender, EventArgs e)
     {
-        using var folderBrowserDialog = new FolderBrowserDialog();
-        var result = folderBrowserDialog.ShowDialog();
-        if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(folderBrowserDialog.SelectedPath))
+        var result = folderBrowserDialog1.ShowDialog();
+        if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(folderBrowserDialog1.SelectedPath))
         {
-            tBFolderPath.Text = folderBrowserDialog.SelectedPath;
+            tBFolderPath.Text = folderBrowserDialog1.SelectedPath;
         }
     }
 
@@ -61,46 +65,6 @@ public partial class MainWindowForm : Form
         labelInfo.Visible = false;
         dataGridViewFileList.DataSource = null;
 
-    }
-
-    private void BtnAddDayFrom_Click(object sender, EventArgs e)
-    {
-        dateTimePickerDateFrom.Value = dateTimePickerDateFrom.Value.AddDays(1);
-    }
-
-    private void BtnSubtractDayFrom_Click(object sender, EventArgs e)
-    {
-        dateTimePickerDateFrom.Value = dateTimePickerDateFrom.Value.AddDays(-1);
-    }
-
-    private void BtnAddDayTo_Click(object sender, EventArgs e)
-    {
-        dateTimePickerDateTo.Value = dateTimePickerDateTo.Value.AddDays(1);
-    }
-
-    private void BtnSubtractDayTo_Click(object sender, EventArgs e)
-    {
-        dateTimePickerDateTo.Value = dateTimePickerDateTo.Value.AddDays(-1);
-    }
-
-    private void BtnAddHourFrom_Click(object sender, EventArgs e)
-    {
-        dateTimePickerTimeFrom.Value = dateTimePickerTimeFrom.Value.AddHours(1);
-    }
-
-    private void BtnSubtractHourFrom_Click(object sender, EventArgs e)
-    {
-        dateTimePickerTimeFrom.Value = dateTimePickerTimeFrom.Value.AddHours(-1);
-    }
-
-    private void BtnAddHourTo_Click(object sender, EventArgs e)
-    {
-        dateTimePickerTimeTo.Value = dateTimePickerTimeTo.Value.AddHours(1);
-    }
-
-    private void BtnSubtractHourTo_Click(object sender, EventArgs e)
-    {
-        dateTimePickerTimeTo.Value = dateTimePickerTimeTo.Value.AddHours(-1);
     }
 
     #endregion
@@ -153,7 +117,7 @@ public partial class MainWindowForm : Form
             new DataGridViewTextBoxColumn
             {
                 DataPropertyName = nameof(FileDetails.FilePath),
-                HeaderText = "œcie¿ka do pliku",
+                HeaderText = "Ścieżka do pliku",
                 SortMode = DataGridViewColumnSortMode.Programmatic
             });
         var source = new SortedBindingList<FileDetails>(_filesDetailsList);
@@ -231,6 +195,7 @@ public partial class MainWindowForm : Form
         if (e.Error is not null)
         {
             MessageBox.Show(Resources.messagebox_content_files_unexpectederror, Resources.messagebox_title_warning, MessageBoxButtons.OK);
+            progressBarSearch.Visible = false;
             return;
         }
 
@@ -241,11 +206,13 @@ public partial class MainWindowForm : Form
             labelInfo.Text = string.Format(Resources.label_info_foundedfiles, _filesDetailsList.Count);
             labelInfo.Visible = true;
             GenerateDataGridView();
+            btnRemoveFiles.Enabled = _filesDetailsList.Count > 0;
         }
         else
         {
             MessageBox.Show(Resources.messagebox_content_files_notfound, Resources.messagebox_title_warning, MessageBoxButtons.OK);
         }
+        progressBarSearch.Visible = false;
     }
 
     private (List<FileDetails> files, bool success) RetrieveFilesFromLocation()
