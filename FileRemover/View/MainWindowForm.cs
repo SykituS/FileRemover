@@ -153,7 +153,7 @@ public partial class MainWindowForm : Form
             new DataGridViewTextBoxColumn
             {
                 DataPropertyName = nameof(FileDetails.FilePath),
-                HeaderText = "œcie¿ka do pliku",
+                HeaderText = "Å“cieÂ¿ka do pliku",
                 SortMode = DataGridViewColumnSortMode.Programmatic
             });
         var source = new SortedBindingList<FileDetails>(_filesDetailsList);
@@ -190,6 +190,10 @@ public partial class MainWindowForm : Form
 
     private void dataGridViewFileList_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
     {
+        if (e.RowIndex < 0)
+        {
+            return;
+        }
         var current = ((SortedBindingList<FileDetails>)dataGridViewFileList.DataSource)[e.RowIndex];
         var isDeletable = current.IsDeletable;
         var fileModificationDate = current.FileModificationDate;
