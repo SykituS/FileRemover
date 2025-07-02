@@ -24,7 +24,7 @@ internal static class Program
         Application.Run(ServiceProvider.GetRequiredService<MainWindowForm>());
     }
 
-    public static IServiceProvider ServiceProvider { get; private set; }
+    public static IServiceProvider ServiceProvider { get; private set; } = null!;
 
     private static IHostBuilder CreateHostBuilder()
     {
