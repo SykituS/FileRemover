@@ -45,17 +45,20 @@ public class FileService
         _files.Clear();
         _worker = backgroundWorkerGetFiles;
 
+        bool success;
         try
         {
             RetrieveFilesFromAllDirectories(directoryDetails.SelectedPath, directoryDetails);
+            success = true;
         }
         catch (Exception e)
         {
             Debug.WriteLine($"Unexpected error occured: {e}");
+            success = false;
         }
 
 
-        return (_files, true);
+        return (_files, success);
     }
 
     private void RetrieveFilesFromAllDirectories(string rootPath, DirectoryDetails details)
